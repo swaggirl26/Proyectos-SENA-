@@ -1,5 +1,6 @@
 import express from 'express';
-import servicesRoutes from './routes/servicesRoutes.js'
+//import servicesRoutes from './routes/servicesRoutes.js'
+import homeRoutes from './routes/homeRoutes.js'
 import dotenv from 'dotenv'
 
 dotenv.config();
@@ -8,7 +9,8 @@ dotenv.config();
 const app = express();
 
 // definir una ruta
-app.get('/api/services', servicesRoutes);
+// app.use('/api/services', servicesRoutes);
+app.use('/api/inicio', homeRoutes);
 
 
 
