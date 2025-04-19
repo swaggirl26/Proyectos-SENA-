@@ -5,7 +5,7 @@ import {
   createAdministrador,
   updateAdministrador,
   deleteAdministrador
-} from '../controllers/administradorController.js';
+} from '../controllers/administradorController.js'; 
 
 const router = express.Router();
 

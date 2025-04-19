@@ -8,4 +8,4 @@ export const obtenerSobreNosotros = (req, res) => {
   
     res.json(sobreNosotros);
   };
-  
+   

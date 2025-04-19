@@ -7,7 +7,7 @@ import {
   deleteConfiguracion
 } from '../controllers/configuracionesController.js';
 
-const router = express.Router();
+const router = express.Router(); 
 
 router.get('/', getConfiguraciones);
 router.get('/:id', getConfiguracionById);

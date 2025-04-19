@@ -8,7 +8,7 @@ import {
 } from '../controllers/paginasController.js';
 
 const router = express.Router();
-
+ 
 router.get('/', getPaginas);
 router.get('/:id', getPaginaById);
 router.post('/', createPagina);

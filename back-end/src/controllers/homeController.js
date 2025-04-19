@@ -24,3 +24,4 @@ export const obtenerInicio = async (req, res) => {
         res.status(500).json({ mensaje: 'Hubo un error al cargar el contenido del inicio' });
     }
 };
+ 

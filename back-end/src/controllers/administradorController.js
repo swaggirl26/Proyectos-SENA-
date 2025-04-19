@@ -9,7 +9,7 @@ export const getAdministradores = async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Error al obtener administradores' });
   }
-};
+}; 
 
 export const getAdministradorById = async (req, res) => {
   try {

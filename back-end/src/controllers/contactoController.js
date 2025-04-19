@@ -12,3 +12,4 @@ export const enviarMensajeContacto = (req, res) => {
         datos: { nombre, apellido, correo, asunto, mensaje }
     });
 };
+ 

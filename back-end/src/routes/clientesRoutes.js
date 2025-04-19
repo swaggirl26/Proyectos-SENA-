@@ -7,7 +7,7 @@ import {
   deleteCliente
 } from '../controllers/clientesController.js';
 
-const router = express.Router();
+const router = express.Router(); 
 
 router.get('/', getClientes);
 router.get('/:id', getClienteById);

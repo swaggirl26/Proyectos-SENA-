@@ -72,3 +72,4 @@ export const deleteCategoria = async (req, res) => {
     res.status(500).json({ error: 'Error al eliminar categoría' });
   }
 };
+ 
