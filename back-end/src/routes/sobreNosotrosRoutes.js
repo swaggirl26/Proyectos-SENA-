@@ -1,14 +1,10 @@
+// routes/sobreNosotrosRoutes.js
 import express from 'express';
+import { obtenerSobreNosotros } from '../controllers/sobreNosotrosController.js';
 
 const router = express.Router();
 
-// Aquí solo va '/', porque '/api/home' ya se definió en index.js
-router.get('/', (req, res) => {
-    const sobreNosotros = [
-        { id: 1, nombre: 'Vision' },
-    ];
-
-    res.json(sobreNosotros);
-});
+// '/api/sobreNosotros' ya está definido en index.js
+router.get('/', obtenerSobreNosotros);
 
 export default router;

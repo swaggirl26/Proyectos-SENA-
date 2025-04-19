@@ -1,14 +1,9 @@
 import express from 'express';
+import { obtenerInicio } from '../controllers/homeController.js';
 
 const router = express.Router();
 
-// Aquí solo va '/', porque '/api/home' ya se definió en index.js
-router.get('/', (req, res) => {
-    const inicio = [
-        { id: 1, nombre: 'Hola mundo' },
-    ];
-
-    res.json(inicio);
-});
+// Ruta principal de inicio
+router.get('/', obtenerInicio);
 
 export default router;

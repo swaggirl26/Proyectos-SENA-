@@ -1,14 +1,18 @@
 import express from 'express';
+import {
+  getProductos,
+  getProductoById,
+  createProducto,
+  updateProducto,
+  deleteProducto
+} from '../controllers/productosController.js';
 
 const router = express.Router();
 
-// Aquí solo va '/', porque '/api/home' ya se definió en index.js
-router.get('/', (req, res) => {
-    const productos = [
-        { id: 1, nombre: 'Onda Serena' },
-    ];
-
-    res.json(productos);
-});
+router.get('/', getProductos);
+router.get('/:id', getProductoById);
+router.post('/', createProducto);
+router.put('/:id', updateProducto);
+router.delete('/:id', deleteProducto);
 
 export default router;
