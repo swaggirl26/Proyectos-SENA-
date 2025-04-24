@@ -1,19 +1,13 @@
 import express from 'express';
-import {
-  getProductos,
-  getProductoById,
-  createProducto,
-  updateProducto,
-  deleteProducto
-} from '../controllers/productosController.js';
+
+import multer from 'multer';
+import { subirImagenProducto } from '../controllers/productosController.js';
 
 const router = express.Router();
 
-router.get('/', getProductos);
-router.get('/:id', getProductoById);
-router.post('/', createProducto);
-router.put('/:id', updateProducto);
-router.delete('/:id', deleteProducto);
+// Middleware para subir archivos con multer
+const upload = multer({ dest: 'uploads/' });
+
+router.post('/subir', upload.single('imagen'), subirImagenProducto);
 
 export default router;
- 

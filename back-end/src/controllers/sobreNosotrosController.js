@@ -1,4 +1,6 @@
 // controllers/sobreNosotrosController.js
+
+import { PrismaClient } from '../../src/generated/prisma/index.js';
 export const obtenerSobreNosotros = (req, res) => {
     const sobreNosotros = [
       { id: 1, nombre: 'Visión' },

@@ -1,82 +1,43 @@
-import { PrismaClient } from '@prisma/client';
+import cloudinary from '../utils/cloudinary.js';
+import fs from 'fs/promises';
+import { PrismaClient } from '../generated/prisma/index.js'; // ✅ Ruta corregida
+
 const prisma = new PrismaClient();
 
-export const getProductos = async (req, res) => {
+export const subirImagenProducto = async (req, res) => {
   try {
-    const items = await prisma.productos.findMany({
-      include: { categorias: true, administrador: true }
+    const archivo = req.file;
+    const { nombre, precio, idAdmin, idCategoria, descripcion } = req.body;
+
+    if (!archivo || !nombre || !precio || !idAdmin || !idCategoria || !descripcion) {
+      return res.status(400).json({ mensaje: 'Faltan datos del producto o imagen.' });
+    }
+
+    const resultado = await cloudinary.uploader.upload(archivo.path, {
+      folder: 'productos',
+      public_id: archivo.originalname.split('.')[0],
     });
-    res.json(items);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al obtener productos' });
-  }
-};
 
-export const getProductoById = async (req, res) => {
-  try {
-    const id = parseInt(req.params.id);
-    const item = await prisma.productos.findUnique({ where: { idProducto: id } });
-    if (!item) return res.status(404).json({ error: 'Producto no encontrado' });
-    res.json(item);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al obtener producto' });
-  }
-};
+    await fs.unlink(archivo.path); // Borra el archivo temporal
 
-export const createProducto = async (req, res) => {
-  try {
-    const {
-      nombre, descripcion, imagen_url,
-      precio, idCategoria, idAdmin
-    } = req.body;
-    const now = new Date();
-    const nuevo = await prisma.productos.create({
+    const nuevoProducto = await prisma.productos.create({
       data: {
         nombre,
         descripcion,
-        imagen_url,
-        precio: precio ? parseFloat(precio) : undefined,
-        idCategoria: parseInt(idCategoria),
+        precio: parseFloat(precio),
+        imagen_url: resultado.secure_url,
         idAdmin: parseInt(idAdmin),
-        creado: now,
-        actualizado: now
-      }
+        idCategoria: parseInt(idCategoria),
+        creado: new Date(),
+        actualizado: new Date(),
+      },
     });
-    res.status(201).json(nuevo);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al crear producto' });
-  }
-};
 
-export const updateProducto = async (req, res) => {
-  try {
-    const id = parseInt(req.params.id);
-    const data = { ...req.body, actualizado: new Date() };
-    if (data.precio) data.precio = parseFloat(data.precio);
-    if (data.idCategoria) data.idCategoria = parseInt(data.idCategoria);
-    if (data.idAdmin) data.idAdmin = parseInt(data.idAdmin);
-    const updated = await prisma.productos.update({
-      where: { idProducto: id },
-      data
-    });
-    res.json(updated);
+    res.status(201).json({ mensaje: 'Producto creado con imagen', producto: nuevoProducto });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al actualizar producto' });
-  }
-};
-
-export const deleteProducto = async (req, res) => {
-  try {
-    const id = parseInt(req.params.id);
-    await prisma.productos.delete({ where: { idProducto: id } });
-    res.json({ message: 'Producto eliminado correctamente' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al eliminar producto' });
+    console.error('Error:', error);
+    res.status(500).json({ mensaje: 'Error al subir imagen o guardar producto.' });
   }
 };
  
+

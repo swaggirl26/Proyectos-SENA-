@@ -1,27 +1,10 @@
-// controllers/homeController.js
-
-import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
-
+// Con async/await aunque por ahora no lo use
 export const obtenerInicio = async (req, res) => {
     try {
-        // Aquí puedes traer información dinámica si tienes una tabla para el contenido del home
-        // Por ejemplo, traer los productos destacados o banners
-        const productosDestacados = await prisma.producto.findMany({
-            where: {
-                destacado: true
-            },
-            take: 3
-        });
-
-        res.json({
-            mensaje: 'Bienvenido a la página de inicio',
-            destacados: productosDestacados
-        });
-
+      res.status(200).json({ mensaje: 'Bienvenido a la API de Inicio' });
     } catch (error) {
-        console.error('Error al obtener el inicio:', error);
-        res.status(500).json({ mensaje: 'Hubo un error al cargar el contenido del inicio' });
+      console.error('Error al cargar inicio:', error);
+      res.status(500).json({ error: 'Error del servidor' });
     }
-};
- 
+  };
+  

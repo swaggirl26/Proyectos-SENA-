@@ -1,3 +1,5 @@
+import { PrismaClient } from '../../src/generated/prisma/index.js';
+
 export const enviarMensajeContacto = (req, res) => {
     const { nombre, apellido, correo, asunto, mensaje } = req.body;
 

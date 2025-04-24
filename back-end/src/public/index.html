@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subir Producto</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.7rem;
+      font-size: 1rem;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Subir Producto</h1>
+    <form action="http://localhost:4000/api/productos/subir" method="POST" enctype="multipart/form-data">
+      <label for="nombre">Nombre del producto:</label>
+      <input type="text" id="nombre" name="nombre" required />
+
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" name="precio" step="0.01" required />
+
+      <label for="descripcion">Descripción:</label>
+      <input type="text" id="descripcion" name="descripcion" required />
+
+      <label for="idCategoria">ID de Categoría:</label>
+      <input type="number" id="idCategoria" name="idCategoria" required />
+
+      <label for="idAdmin">ID de Administrador:</label>
+      <input type="number" id="idAdmin" name="idAdmin" required />
+
+      <label for="imagen">Imagen del producto:</label>
+      <input type="file" id="imagen" name="imagen" accept="image/*" required />
+
+      <button type="submit">Subir</button>
+    </form>
+  </div>
+</body>
+</html>
