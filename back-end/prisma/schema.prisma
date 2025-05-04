@@ -85,7 +85,7 @@ model productos {
   idCategoria   Int
   idAdmin       Int
   nombre        String        @db.VarChar(100)
-  descripcion   String        @db.VarChar(200)
+  descripcion   String?       @db.Text
   imagen_url    String        @db.VarChar(255)
   precio        Decimal?      @db.Decimal(10, 2)
   creado        DateTime      @db.DateTime(0)

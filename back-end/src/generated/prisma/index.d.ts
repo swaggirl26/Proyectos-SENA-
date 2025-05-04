@@ -6874,7 +6874,7 @@ export namespace Prisma {
     idCategoria: number
     idAdmin: number
     nombre: string
-    descripcion: string
+    descripcion: string | null
     imagen_url: string
     precio: Decimal | null
     creado: Date
@@ -6945,7 +6945,7 @@ export namespace Prisma {
       idCategoria: number
       idAdmin: number
       nombre: string
-      descripcion: string
+      descripcion: string | null
       imagen_url: string
       precio: Prisma.Decimal | null
       creado: Date
@@ -9297,7 +9297,7 @@ export namespace Prisma {
     idCategoria?: IntFilter<"productos"> | number
     idAdmin?: IntFilter<"productos"> | number
     nombre?: StringFilter<"productos"> | string
-    descripcion?: StringFilter<"productos"> | string
+    descripcion?: StringNullableFilter<"productos"> | string | null
     imagen_url?: StringFilter<"productos"> | string
     precio?: DecimalNullableFilter<"productos"> | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFilter<"productos"> | Date | string
@@ -9311,7 +9311,7 @@ export namespace Prisma {
     idCategoria?: SortOrder
     idAdmin?: SortOrder
     nombre?: SortOrder
-    descripcion?: SortOrder
+    descripcion?: SortOrderInput | SortOrder
     imagen_url?: SortOrder
     precio?: SortOrderInput | SortOrder
     creado?: SortOrder
@@ -9329,7 +9329,7 @@ export namespace Prisma {
     idCategoria?: IntFilter<"productos"> | number
     idAdmin?: IntFilter<"productos"> | number
     nombre?: StringFilter<"productos"> | string
-    descripcion?: StringFilter<"productos"> | string
+    descripcion?: StringNullableFilter<"productos"> | string | null
     imagen_url?: StringFilter<"productos"> | string
     precio?: DecimalNullableFilter<"productos"> | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFilter<"productos"> | Date | string
@@ -9343,7 +9343,7 @@ export namespace Prisma {
     idCategoria?: SortOrder
     idAdmin?: SortOrder
     nombre?: SortOrder
-    descripcion?: SortOrder
+    descripcion?: SortOrderInput | SortOrder
     imagen_url?: SortOrder
     precio?: SortOrderInput | SortOrder
     creado?: SortOrder
@@ -9363,7 +9363,7 @@ export namespace Prisma {
     idCategoria?: IntWithAggregatesFilter<"productos"> | number
     idAdmin?: IntWithAggregatesFilter<"productos"> | number
     nombre?: StringWithAggregatesFilter<"productos"> | string
-    descripcion?: StringWithAggregatesFilter<"productos"> | string
+    descripcion?: StringNullableWithAggregatesFilter<"productos"> | string | null
     imagen_url?: StringWithAggregatesFilter<"productos"> | string
     precio?: DecimalNullableWithAggregatesFilter<"productos"> | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeWithAggregatesFilter<"productos"> | Date | string
@@ -9815,7 +9815,7 @@ export namespace Prisma {
 
   export type productosCreateInput = {
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -9829,7 +9829,7 @@ export namespace Prisma {
     idCategoria: number
     idAdmin: number
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -9838,7 +9838,7 @@ export namespace Prisma {
 
   export type productosUpdateInput = {
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9852,7 +9852,7 @@ export namespace Prisma {
     idCategoria?: IntFieldUpdateOperationsInput | number
     idAdmin?: IntFieldUpdateOperationsInput | number
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9864,7 +9864,7 @@ export namespace Prisma {
     idCategoria: number
     idAdmin: number
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -9873,7 +9873,7 @@ export namespace Prisma {
 
   export type productosUpdateManyMutationInput = {
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9885,7 +9885,7 @@ export namespace Prisma {
     idCategoria?: IntFieldUpdateOperationsInput | number
     idAdmin?: IntFieldUpdateOperationsInput | number
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11288,7 +11288,7 @@ export namespace Prisma {
 
   export type productosCreateWithoutAdministradorInput = {
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -11300,7 +11300,7 @@ export namespace Prisma {
     idProducto?: number
     idCategoria: number
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -11485,7 +11485,7 @@ export namespace Prisma {
     idCategoria?: IntFilter<"productos"> | number
     idAdmin?: IntFilter<"productos"> | number
     nombre?: StringFilter<"productos"> | string
-    descripcion?: StringFilter<"productos"> | string
+    descripcion?: StringNullableFilter<"productos"> | string | null
     imagen_url?: StringFilter<"productos"> | string
     precio?: DecimalNullableFilter<"productos"> | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFilter<"productos"> | Date | string
@@ -11556,7 +11556,7 @@ export namespace Prisma {
 
   export type productosCreateWithoutCategoriasInput = {
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -11568,7 +11568,7 @@ export namespace Prisma {
     idProducto?: number
     idAdmin: number
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -12104,7 +12104,7 @@ export namespace Prisma {
     idProducto?: number
     idCategoria: number
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -12236,7 +12236,7 @@ export namespace Prisma {
 
   export type productosUpdateWithoutAdministradorInput = {
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12248,7 +12248,7 @@ export namespace Prisma {
     idProducto?: IntFieldUpdateOperationsInput | number
     idCategoria?: IntFieldUpdateOperationsInput | number
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12259,7 +12259,7 @@ export namespace Prisma {
     idProducto?: IntFieldUpdateOperationsInput | number
     idCategoria?: IntFieldUpdateOperationsInput | number
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12293,7 +12293,7 @@ export namespace Prisma {
     idProducto?: number
     idAdmin: number
     nombre: string
-    descripcion: string
+    descripcion?: string | null
     imagen_url: string
     precio?: Decimal | DecimalJsLike | number | string | null
     creado: Date | string
@@ -12302,7 +12302,7 @@ export namespace Prisma {
 
   export type productosUpdateWithoutCategoriasInput = {
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12314,7 +12314,7 @@ export namespace Prisma {
     idProducto?: IntFieldUpdateOperationsInput | number
     idAdmin?: IntFieldUpdateOperationsInput | number
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12325,7 +12325,7 @@ export namespace Prisma {
     idProducto?: IntFieldUpdateOperationsInput | number
     idAdmin?: IntFieldUpdateOperationsInput | number
     nombre?: StringFieldUpdateOperationsInput | string
-    descripcion?: StringFieldUpdateOperationsInput | string
+    descripcion?: NullableStringFieldUpdateOperationsInput | string | null
     imagen_url?: StringFieldUpdateOperationsInput | string
     precio?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     creado?: DateTimeFieldUpdateOperationsInput | Date | string

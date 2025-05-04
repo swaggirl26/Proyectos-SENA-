@@ -5,6 +5,9 @@ import productosRoutes from './routes/productosRoutes.js'
 import sobreNosotrosRoutes from './routes/sobreNosotrosRoutes.js'
 import contactoRoutes from './routes/contactoRoutes.js';
 import serviciosRoutes from './routes/servicesRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import pagoRoutes from './routes/pagoRoutes.js';
+
 import dotenv from 'dotenv'
 
 dotenv.config();
@@ -22,6 +25,9 @@ app.use('/api/productos', productosRoutes);
 app.use('/api/sobreNosotros', sobreNosotrosRoutes);
 app.use('/api/contacto', contactoRoutes);
 app.use('/api/servicios', serviciosRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/pagos', pagoRoutes);
+
 
 
 
