@@ -12,11 +12,11 @@ export default function Navegacion() {
       {/* Menú */}
       <div className="flex gap-10 text-sm font-semibold">
         
-      <Link to="/" className="text-white hover:text-yellow-400 transition-colors">INICIO</Link>
-      <Link to="/productos" className="text-white hover:text-yellow-400 transition-colors">PRODUCTOS</Link>
-      <Link to="/servicios" className="text-white hover:text-yellow-400 transition-colors">SERVICIOS</Link>
-      <Link to="/sobrenosotros" className="text-white hover:text-yellow-400 transition-colors">SOBRE NOSOTROS</Link>
-      <Link to="/contactanos" className="text-white hover:text-yellow-400 transition-colors">CONTACTANOS</Link>
+      <Link to="/" className="text-white hover:text-[#E5BC57] transition-colors">INICIO</Link>
+      <Link to="/productos" className="text-white hover:text-[#E5BC57] transition-colors">PRODUCTOS</Link>
+      <Link to="/servicios" className="text-white hover:text-[#E5BC57] transition-colors">SERVICIOS</Link>
+      <Link to="/sobrenosotros" className="text-white hover:text-[#E5BC57] transition-colors">SOBRE NOSOTROS</Link>
+      <Link to="/contactanos" className="text-white hover:text-[#E5BC57] transition-colors">CONTÁCTANOS</Link>
 
       </div> 
       
@@ -24,7 +24,7 @@ export default function Navegacion() {
       {/* Botones derechos */}
       <div className="flex items-center gap-3">
         {/* Carrito */}
-        <button className="bg-gray-300 rounded-full p-3 hover:bg-gray-400 transition">
+        <button className="bg-gray-300 rounded-full p-3 hover:bg-[#E5BC57] transition">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-5 h-5 text-black"
@@ -51,17 +51,17 @@ export default function Navegacion() {
           >
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h1a2 2 0 012 2v3a2 2 0 01-2 2H5v4h1a2 2 0 012 2v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
           </svg>
-          <span className="text-black text-sm">3137442462</span>
+          <span className="text-black text-sm px-2 py-1 rounded-full hover:bg-[#E5BC57] transition">3137442462</span>
         </div>
 
         {/* Login y Register */}
         
-         <button className="bg-gray-300 text-black px-5 py-1 rounded-full hover:bg-gray-400 transition">
+        <Link to="/Login"><button className="bg-gray-300 text-black px-5 py-1 rounded-full hover:bg-[#E5BC57] transition">
           Login
-          </button>
-          <button className="bg-gray-300 text-black px-5 py-1 rounded-full hover:bg-gray-400 transition">
+          </button></Link> 
+        <Link to="/Register"><button className="bg-gray-300 text-black px-5 py-1 rounded-full hover:bg-[#E5BC57]">
          Register
-        </button>
+        </button></Link>
 
       </div>
     </nav>

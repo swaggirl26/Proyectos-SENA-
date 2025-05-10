@@ -1,35 +1,91 @@
-import imagenFondo from '../assets/img/fondo.png'; 
-import whatsapp from '../assets/img/whatsapp_icono 5.png';
-
+import Fondoportada from '../assets/img/Fondoportada.png';
 
 function Inicio() {
   return (
-    <section className="flex flex-col md:flex-row h-screen">
-      {/* Columna izquierda */}
-      <div className="w-full md:w-1/2 bg-black bg-opacity-70 text-white flex flex-col justify-center items-center p-8 text-center">
-        <h2 className="text-xl italic mb-4">“ Calidad, estilo y cumplimiento a tu medida ”</h2>
-        <p className="mb-6 max-w-md">
-          Más de 32 años de experiencia, transformando tus espacios con elegancia, calidad y funcionalidad.
-        </p>
-        <button className="bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition">
-          Compra Ahora
-        </button>
-      </div>
+    <>
+      {/* Sección de portada */}
+      <section
+        className="relative bg-cover bg-center h-[600px] flex items-center justify-start"
+        style={{ backgroundImage: `url(${Fondoportada})` }}
+      >
+        {/* Capa oscura encima de la imagen */}
+        <div className="absolute inset-0 bg-black/40 z-0" />
 
-      {/* Columna derecha */}
-      <div className="w-full md:w-1/2 relative">
-        <img
-          src={imagenFondo}
-          alt="Fondo"
-          className="w-full h-full object-cover object-right" // Cambia a object-left o object-center si lo prefieres
-        />
-        <img
-          src={whatsapp}
-          alt="WhatsApp"
-          className="absolute bottom-4 right-4 w-12 h-12 cursor-pointer"
-        />
-      </div>
-    </section>
+        {/* Contenido encima de la imagen */}
+        <div className="relative z-10 text-white w-full md:w-1/2 flex flex-col justify-center items-center p-8 text-center">
+          <h2 className="text-xl italic mb-4">
+            “ Calidad, estilo y cumplimiento a tu medida ”
+          </h2>
+          <p className="mb-6 max-w-md">
+            Más de 32 años de experiencia, transformando tus espacios con
+            elegancia, calidad y funcionalidad.
+          </p>
+          <button className="bg-[#E5BC57] text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition">
+            Compra Ahora
+          </button>
+        </div>
+      </section>
+
+      {/* Sección de tarjetas */}
+      <section className="bg-[#CBBAA7] py-16 px-4 text-center">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Tarjeta 1 */}
+            <div className="bg-white shadow-xl">
+              <img
+                src="/imagenes/asesoria.png"
+                alt="Asesoría"
+                className="w-auto h-100 object-contain"
+              />
+              <div className="p-6 bg-black/70 text-white">
+                <h2 className="text-xl font-bold mb-2">ASESORÍA</h2>
+                <p>Te ayudamos a escoger la mejor opción para tu hogar</p>
+              </div>
+            </div>
+
+            {/* Tarjeta 2 */}
+            <div className="bg-white shadow-xl">
+              <img
+                src="/imagenes/cortinas.png"
+                alt="Cortinas"
+                className="w-auto h-72 object-contain"
+              />
+              <div className="p-6 bg-black/70 text-white">
+                <h2 className="text-xl font-bold mb-2">CORTINAS</h2>
+                <p className="text-sm leading-tight">
+                  ONDA SERENA - SHEER ELEGANCE - PANEL JAPONES - ENRROLLABLES -
+                  BLACKOUTS - VERTICALES - MACROMADERA - MOTORIZADAS - TOLDOS
+                </p>
+              </div>
+            </div>
+
+            {/* Tarjeta 3 */}
+            <div className="bg-white shadow-xl">
+              <img
+                src="/imagenes/servicios.png"
+                alt="Servicios"
+                className="w-70 h-72 object-contain"
+              />
+              <div className="p-6 bg-black/70 text-white">
+                <h2 className="text-xl font-bold mb-2">SERVICIOS</h2>
+                <p className="text-sm leading-tight">
+                  CONFECCIÓN DE CORTINAS - INSTALACIÓN - LAVADO Y MANTENIMIENTO
+                  - REPARACIÓN Y RESTAURACIÓN
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Texto inferior + botón */}
+          <div className="mt-16">
+            <h3 className="text-xl mb-4">Algunos de nuestros productos</h3>
+            <button className="bg-[#E5BC57] text-black font-semibold py-3 px-6 rounded-full hover:bg-yellow-500 transition">
+              TIENDA
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 

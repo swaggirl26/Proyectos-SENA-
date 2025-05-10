@@ -41,11 +41,11 @@ function Servicios() {
             <img
               src={servicio.imagen}
               alt={servicio.titulo}
-              className="w-full h-120 object-contain rounded-lg mb-4"
+              className="w-full h-156 object-contain rounded-lg mb-4"
             />
             <h3 className="text-xl font-semibold mb-4">{servicio.titulo}</h3>
             <p className="text-gray-600 mb-6">{servicio.descripcion}</p>
-            <button className="mt-auto bg-yellow-400 text-black px-4 py-2 rounded-full hover:bg-yellow-500 transition">
+            <button className="mt-auto bg-[#E5BC57] text-black px-4 py-2 rounded-full hover:bg-yellow-500 transition">
               Más información
             </button>
           </div>

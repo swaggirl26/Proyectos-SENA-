@@ -1,4 +1,4 @@
-import imagenFondo from '../assets/img/fondo.png'; // asegúrate que el archivo se llame así y esté en esa ruta
+import imagenFondo from '../assets/img/Fondoportada.png'; // asegúrate que el archivo se llame así y esté en esa ruta
 
 function SobreNosotros() {
   return (
