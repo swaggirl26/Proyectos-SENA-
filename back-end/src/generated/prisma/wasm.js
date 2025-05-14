@@ -150,26 +150,6 @@ exports.Prisma.ClientesScalarFieldEnum = {
   fecha: 'fecha'
 };
 
-exports.Prisma.ConfiguracionesScalarFieldEnum = {
-  idConfiguracion: 'idConfiguracion',
-  idAdmin: 'idAdmin',
-  nombre: 'nombre',
-  valor: 'valor',
-  descripcion: 'descripcion',
-  creado: 'creado',
-  actualizado: 'actualizado'
-};
-
-exports.Prisma.PaginasScalarFieldEnum = {
-  idPagina: 'idPagina',
-  idAdmin: 'idAdmin',
-  nombre: 'nombre',
-  contenido: 'contenido',
-  tipo: 'tipo',
-  creado: 'creado',
-  actualizado: 'actualizado'
-};
-
 exports.Prisma.ProductosScalarFieldEnum = {
   idProducto: 'idProducto',
   idCategoria: 'idCategoria',
@@ -223,17 +203,6 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
-exports.Prisma.configuracionesOrderByRelevanceFieldEnum = {
-  nombre: 'nombre',
-  valor: 'valor',
-  descripcion: 'descripcion'
-};
-
-exports.Prisma.paginasOrderByRelevanceFieldEnum = {
-  nombre: 'nombre',
-  contenido: 'contenido'
-};
-
 exports.Prisma.productosOrderByRelevanceFieldEnum = {
   nombre: 'nombre',
   descripcion: 'descripcion',
@@ -249,21 +218,10 @@ exports.administrador_rol = exports.$Enums.administrador_rol = {
   editor: 'editor'
 };
 
-exports.paginas_tipo = exports.$Enums.paginas_tipo = {
-  inicio: 'inicio',
-  productos: 'productos',
-  servicios: 'servicios',
-  nosotros: 'nosotros',
-  contacto: 'contacto',
-  blog: 'blog'
-};
-
 exports.Prisma.ModelName = {
   administrador: 'administrador',
   categorias: 'categorias',
   clientes: 'clientes',
-  configuraciones: 'configuraciones',
-  paginas: 'paginas',
   productos: 'productos',
   servicios: 'servicios'
 };

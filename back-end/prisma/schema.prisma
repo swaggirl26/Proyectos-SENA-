@@ -1,6 +1,7 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
+  binaryTargets = ["native", "windows", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -18,8 +19,6 @@ model administrador {
   actualizado     DateTime          @db.DateTime(0)
   categorias      categorias[]
   clientes        clientes[]
-  configuraciones configuraciones[]
-  paginas         paginas[]
   productos       productos[]
   servicios       servicios[]
 }
@@ -54,31 +53,7 @@ model clientes {
   @@index([idAdmin], map: "fk_Contactos_Administradores1_idx")
 }
 
-model configuraciones {
-  idConfiguracion Int           @id @default(autoincrement())
-  idAdmin         Int
-  nombre          String        @unique(map: "nombre_UNIQUE") @db.VarChar(100)
-  valor           String        @db.VarChar(200)
-  descripcion     String?       @db.VarChar(200)
-  creado          DateTime      @db.DateTime(0)
-  actualizado     DateTime      @db.DateTime(0)
-  administrador   administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: "fk_Configuraciones_Administradores1")
 
-  @@index([idAdmin], map: "fk_Configuraciones_Administradores1_idx")
-}
-
-model paginas {
-  idPagina      Int           @id @default(autoincrement())
-  idAdmin       Int
-  nombre        String        @db.VarChar(50)
-  contenido     String        @db.Text
-  tipo          paginas_tipo
-  creado        DateTime      @db.DateTime(0)
-  actualizado   DateTime      @db.DateTime(0)
-  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: "fk_Paginas_Administradores")
-
-  @@index([idAdmin], map: "fk_Paginas_Administradores_idx")
-}
 
 model productos {
   idProducto    Int           @id @default(autoincrement())
@@ -114,11 +89,3 @@ enum administrador_rol {
   editor
 }
 
-enum paginas_tipo {
-  inicio
-  productos
-  servicios
-  nosotros
-  contacto
-  blog
-}
