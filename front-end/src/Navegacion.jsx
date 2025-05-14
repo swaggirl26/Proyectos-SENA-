@@ -6,7 +6,6 @@ export default function Navegacion() {
       {/* Logo */}
       <div className="flex items-center">
         <img src={logo} alt="Logo" className="h-30 w-auto" />
-        <span className="ml-2 font-serif italic text-sm">Cortinas y Servicios</span>
       </div>
 
       {/* Menú */}
@@ -39,20 +38,6 @@ export default function Navegacion() {
           </svg>
         </button>
 
-        {/* Teléfono */}
-        <div className="flex items-center gap-2 bg-gray-300 rounded-full px-3 py-1">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 text-black"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h1a2 2 0 012 2v3a2 2 0 01-2 2H5v4h1a2 2 0 012 2v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z" />
-          </svg>
-          <span className="text-black text-sm px-2 py-1 rounded-full hover:bg-[#E5BC57] transition">3137442462</span>
-        </div>
 
         {/* Login y Register */}
         
