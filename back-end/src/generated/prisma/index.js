@@ -251,7 +251,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/cristian/Escritorio/proyecto-tps2-125/back-end/src/generated/prisma",
+      "value": "C:\\Users\\sebas\\Desktop\\proyecto-tps2-125\\back-end\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -260,17 +260,24 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "debian-openssl-3.0.x",
+        "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "windows"
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/home/cristian/Escritorio/proyecto-tps2-125/back-end/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\sebas\\Desktop\\proyecto-tps2-125\\back-end\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.6.0",
@@ -288,8 +295,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel administrador {\n  idAdmin         Int               @id @default(autoincrement())\n  usuario         String            @unique(map: \"username_UNIQUE\") @db.VarChar(45)\n  contrase_a      String            @map(\"contraseña\") @db.VarChar(50)\n  correo          String            @db.VarChar(50)\n  rol             administrador_rol @default(editor)\n  creado          DateTime          @db.DateTime(0)\n  actualizado     DateTime          @db.DateTime(0)\n  categorias      categorias[]\n  clientes        clientes[]\n  configuraciones configuraciones[]\n  paginas         paginas[]\n  productos       productos[]\n  servicios       servicios[]\n}\n\nmodel categorias {\n  idCategoria   Int           @id @default(autoincrement())\n  idAdmin       Int\n  nombre        String        @db.VarChar(100)\n  descripcion   String        @db.VarChar(200)\n  creado        DateTime      @db.DateTime(0)\n  actualizado   DateTime      @db.DateTime(0)\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Categorias_Administradores1\")\n  productos     productos[]\n\n  @@index([idAdmin], map: \"fk_Categorias_Administradores1_idx\")\n}\n\nmodel clientes {\n  idCliente     Int           @id @default(autoincrement())\n  idAdmin       Int\n  nombre        String        @db.VarChar(100)\n  apellido      String        @db.VarChar(100)\n  correo        String        @db.VarChar(100)\n  contrase_a    String        @map(\"contraseña\") @db.VarChar(50)\n  telefono      String        @db.VarChar(30)\n  direccion     String        @db.VarChar(50)\n  ciudad        String        @db.VarChar(45)\n  mensaje       String        @db.VarChar(200)\n  fecha         DateTime      @db.Date\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Contactos_Administradores1\")\n\n  @@index([idAdmin], map: \"fk_Contactos_Administradores1_idx\")\n}\n\nmodel configuraciones {\n  idConfiguracion Int           @id @default(autoincrement())\n  idAdmin         Int\n  nombre          String        @unique(map: \"nombre_UNIQUE\") @db.VarChar(100)\n  valor           String        @db.VarChar(200)\n  descripcion     String?       @db.VarChar(200)\n  creado          DateTime      @db.DateTime(0)\n  actualizado     DateTime      @db.DateTime(0)\n  administrador   administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Configuraciones_Administradores1\")\n\n  @@index([idAdmin], map: \"fk_Configuraciones_Administradores1_idx\")\n}\n\nmodel paginas {\n  idPagina      Int           @id @default(autoincrement())\n  idAdmin       Int\n  nombre        String        @db.VarChar(50)\n  contenido     String        @db.Text\n  tipo          paginas_tipo\n  creado        DateTime      @db.DateTime(0)\n  actualizado   DateTime      @db.DateTime(0)\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Paginas_Administradores\")\n\n  @@index([idAdmin], map: \"fk_Paginas_Administradores_idx\")\n}\n\nmodel productos {\n  idProducto    Int           @id @default(autoincrement())\n  idCategoria   Int\n  idAdmin       Int\n  nombre        String        @db.VarChar(100)\n  descripcion   String?       @db.Text\n  imagen_url    String        @db.VarChar(255)\n  precio        Decimal?      @db.Decimal(10, 2)\n  creado        DateTime      @db.DateTime(0)\n  actualizado   DateTime      @db.DateTime(0)\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Productos_Administradores1\")\n  categorias    categorias    @relation(fields: [idCategoria], references: [idCategoria], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Productos_Categorias1\")\n\n  @@index([idAdmin], map: \"fk_Productos_Administradores1_idx\")\n  @@index([idCategoria], map: \"fk_Productos_Categorias1_idx\")\n}\n\nmodel servicios {\n  idServicio    Int           @id @default(autoincrement())\n  idAdmin       Int\n  nombre        String        @db.VarChar(100)\n  descripcion   String        @db.VarChar(200)\n  creado        DateTime      @db.DateTime(0)\n  actualizado   DateTime      @db.DateTime(0)\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Servicios_Administradores1\")\n\n  @@index([idAdmin], map: \"fk_Servicios_Administradores1_idx\")\n}\n\nenum administrador_rol {\n  admin\n  editor\n}\n\nenum paginas_tipo {\n  inicio\n  productos\n  servicios\n  nosotros\n  contacto\n  blog\n}\n",
-  "inlineSchemaHash": "5e6fb96e894114c7169dae541fd9f86661a9e70ad92484fe63f8abe9c4ca6b81",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"windows\"]\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel administrador {\n  idAdmin         Int               @id @default(autoincrement())\n  usuario         String            @unique(map: \"username_UNIQUE\") @db.VarChar(45)\n  contrase_a      String            @map(\"contraseña\") @db.VarChar(50)\n  correo          String            @db.VarChar(50)\n  rol             administrador_rol @default(editor)\n  creado          DateTime          @db.DateTime(0)\n  actualizado     DateTime          @db.DateTime(0)\n  categorias      categorias[]\n  clientes        clientes[]\n  configuraciones configuraciones[]\n  paginas         paginas[]\n  productos       productos[]\n  servicios       servicios[]\n}\n\nmodel categorias {\n  idCategoria   Int           @id @default(autoincrement())\n  idAdmin       Int\n  nombre        String        @db.VarChar(100)\n  descripcion   String        @db.VarChar(200)\n  creado        DateTime      @db.DateTime(0)\n  actualizado   DateTime      @db.DateTime(0)\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Categorias_Administradores1\")\n  productos     productos[]\n\n  @@index([idAdmin], map: \"fk_Categorias_Administradores1_idx\")\n}\n\nmodel clientes {\n  idCliente     Int           @id @default(autoincrement())\n  idAdmin       Int\n  nombre        String        @db.VarChar(100)\n  apellido      String        @db.VarChar(100)\n  correo        String        @db.VarChar(100)\n  contrase_a    String        @map(\"contraseña\") @db.VarChar(50)\n  telefono      String        @db.VarChar(30)\n  direccion     String        @db.VarChar(50)\n  ciudad        String        @db.VarChar(45)\n  mensaje       String        @db.VarChar(200)\n  fecha         DateTime      @db.Date\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Contactos_Administradores1\")\n\n  @@index([idAdmin], map: \"fk_Contactos_Administradores1_idx\")\n}\n\nmodel configuraciones {\n  idConfiguracion Int           @id @default(autoincrement())\n  idAdmin         Int\n  nombre          String        @unique(map: \"nombre_UNIQUE\") @db.VarChar(100)\n  valor           String        @db.VarChar(200)\n  descripcion     String?       @db.VarChar(200)\n  creado          DateTime      @db.DateTime(0)\n  actualizado     DateTime      @db.DateTime(0)\n  administrador   administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Configuraciones_Administradores1\")\n\n  @@index([idAdmin], map: \"fk_Configuraciones_Administradores1_idx\")\n}\n\nmodel paginas {\n  idPagina      Int           @id @default(autoincrement())\n  idAdmin       Int\n  nombre        String        @db.VarChar(50)\n  contenido     String        @db.Text\n  tipo          paginas_tipo\n  creado        DateTime      @db.DateTime(0)\n  actualizado   DateTime      @db.DateTime(0)\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Paginas_Administradores\")\n\n  @@index([idAdmin], map: \"fk_Paginas_Administradores_idx\")\n}\n\nmodel productos {\n  idProducto    Int           @id @default(autoincrement())\n  idCategoria   Int\n  idAdmin       Int\n  nombre        String        @db.VarChar(100)\n  descripcion   String?       @db.Text\n  imagen_url    String        @db.VarChar(255)\n  precio        Decimal?      @db.Decimal(10, 2)\n  creado        DateTime      @db.DateTime(0)\n  actualizado   DateTime      @db.DateTime(0)\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Productos_Administradores1\")\n  categorias    categorias    @relation(fields: [idCategoria], references: [idCategoria], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Productos_Categorias1\")\n\n  @@index([idAdmin], map: \"fk_Productos_Administradores1_idx\")\n  @@index([idCategoria], map: \"fk_Productos_Categorias1_idx\")\n}\n\nmodel servicios {\n  idServicio    Int           @id @default(autoincrement())\n  idAdmin       Int\n  nombre        String        @db.VarChar(100)\n  descripcion   String        @db.VarChar(200)\n  creado        DateTime      @db.DateTime(0)\n  actualizado   DateTime      @db.DateTime(0)\n  administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: \"fk_Servicios_Administradores1\")\n\n  @@index([idAdmin], map: \"fk_Servicios_Administradores1_idx\")\n}\n\nenum administrador_rol {\n  admin\n  editor\n}\n\nenum paginas_tipo {\n  inicio\n  productos\n  servicios\n  nosotros\n  contacto\n  blog\n}\n",
+  "inlineSchemaHash": "5ac743750d84fe5c0aa5ad840b988c2e4fe0ed67dc91e888e0f019b7ae3c0663",
   "copyEngine": true
 }
 
@@ -326,6 +333,10 @@ warnEnvConflicts({
 const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "src/generated/prisma/query_engine-windows.dll.node")
 
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
