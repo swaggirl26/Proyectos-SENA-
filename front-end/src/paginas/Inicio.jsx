@@ -29,7 +29,7 @@ function Inicio() {
             href="https://wa.me/573137442462" // reemplaza con tu número real
             target="_blank"
             rel="noopener noreferrer"
-            className="absolute bottom-4 right-4"
+            className="absolute fixed bottom-4 right-4"
           >
             <img
               src={whatsappIcono}
@@ -42,50 +42,51 @@ function Inicio() {
 
 
       {/* Sección de tarjetas */}
-      <section className="bg-[#e5e2df] py-16 px-4 text-center">
+      <section className="bg-[#e5e2df] py-16 px-4 text-center p-40">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-8">
             {/* Tarjeta 1 */}
-            <div className="bg-white shadow-xl">
-              <img
-                src="/imagenes/asesoria.png"
-                alt="Asesoría"
-                className="w-100 h-100 object-contain"
-              />
-              <div className="p-6 bg-black/70 text-white">
-                <h2 className="text-xl font-bold mb-2">ASESORÍA</h2>
-                <p>Te ayudamos a escoger la mejor opción para tu hogar</p>
-              </div>
-            </div>
+           <div className="bg-white shadow-xl relative">
+  <img
+    src="/imagenes/servicios.jpg"
+    alt="Asesoría"
+    className="w-full h-full object-cover"
+  />
+  <div className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center text-white text-center px-4">
+    <h2 className="text-xl font-bold mb-2">ASESORÍA</h2>
+    <p>Te ayudamos a escoger la mejor opción para tu hogar</p>
+  </div>
+</div>
+
 
             {/* Tarjeta 2 */}
-            <div className="bg-white shadow-xl">
-              <img
-                src="/imagenes/cortinas.png"
-                alt="Cortinas"
-                className="w-auto h-100 object-contain"
-              />
-              <div className="p-6 bg-black/70 text-white">
+             <div className="bg-white shadow-xl relative">
+             <img
+              src="/imagenes/cortinas.jpg"
+              alt="Asesoría"
+              className="w-full h-full object-cover"
+             />
+             <div className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center text-white text-center px-4">
                 <h2 className="text-xl font-bold mb-2">CORTINAS</h2>
                 <p className="text-sm leading-tight">
-                  ONDA SERENA - SHEER ELEGANCE - PANEL JAPONES - ENRROLLABLES -
-                  BLACKOUTS - VERTICALES - MACROMADERA - MOTORIZADAS - TOLDOS
+                  Onda Serena - Sheer Elegance - Panel Japones - Enrollables -
+                  Blackouts - Verticales - Macromadera - Motorizadas - Toldos
                 </p>
               </div>
             </div>
 
             {/* Tarjeta 3 */}
-            <div className="bg-white shadow-xl">
-              <img
-                src="/imagenes/servicios.png"
-                alt="Servicios"
-                className="w-70 h-100 object-contain"
-              />
-              <div className="p-6 bg-black/70 text-white">
+             <div className="bg-white shadow-xl relative">
+             <img
+              src="/imagenes/asesoria.jpg"
+              alt="Asesoría"
+              className="w-full h-full object-cover"
+             />
+             <div className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center text-white text-center px-4">
                 <h2 className="text-xl font-bold mb-2">SERVICIOS</h2>
                 <p className="text-sm leading-tight">
-                  CONFECCIÓN DE CORTINAS - INSTALACIÓN - LAVADO Y MANTENIMIENTO
-                  - REPARACIÓN Y RESTAURACIÓN
+                  Confección de cortinas - Instalación - Lavado y Mantenimiento
+                  - Reparación Y Restauración
                 </p>
               </div>
             </div>

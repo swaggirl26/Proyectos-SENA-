@@ -9,7 +9,7 @@ export default function Navegacion() {
       </div>
 
       {/* Menú */}
-      <div className="flex gap-10 text-sm font-semibold">
+      <div className="flex gap-25 text-sm font-semibold">
         
       <Link to="/" className="text-white hover:text-[#E5BC57] transition-colors">INICIO</Link>
       <Link to="/productos" className="text-white hover:text-[#E5BC57] transition-colors">PRODUCTOS</Link>
@@ -42,10 +42,10 @@ export default function Navegacion() {
         {/* Login y Register */}
         
         <Link to="/Login"><button className="bg-gray-300 text-black px-5 py-1 rounded-full hover:bg-[#E5BC57] transition">
-          Login
+          Iniciar
           </button></Link> 
         <Link to="/Register"><button className="bg-gray-300 text-black px-5 py-1 rounded-full hover:bg-[#E5BC57]">
-         Register
+         Registrarse
         </button></Link>
 
       </div>
