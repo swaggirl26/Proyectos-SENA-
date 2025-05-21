@@ -1,7 +1,7 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
-  binaryTargets = ["native", "windows", "debian-openssl-3.0.x"] // Combinada la lista de binaryTargets
+  provider      = "prisma-client-js"
+  output        = "../src/generated/prisma"
+  binaryTargets = ["native", "windows", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -10,44 +10,44 @@ datasource db {
 }
 
 model administrador {
-  idAdmin       Int                 @id @default(autoincrement())
-  usuario       String              @unique(map: "username_UNIQUE") @db.VarChar(45)
-  contrase_a    String              @map("contraseña") @db.VarChar(50)
-  correo        String              @db.VarChar(50)
-  rol           administrador_rol   @default(editor)
-  creado        DateTime            @db.DateTime(0)
-  actualizado   DateTime            @db.DateTime(0)
-  categorias    categorias[]
-  clientes      clientes[]
-  productos     productos[]
-  servicios     servicios[]
+  idAdmin     Int                @id @default(autoincrement())
+  usuario     String             @unique(map: "username_UNIQUE") @db.VarChar(45)
+  contrase_a  String             @map("contraseña") @db.VarChar(50)
+  correo      String             @db.VarChar(50)
+  rol         administrador_rol? @default(Clientes)
+  creado      DateTime           @db.DateTime(0)
+  actualizado DateTime           @db.DateTime(0)
+  categorias  categorias[]
+  clientes    clientes[]
+  productos   productos[]
+  servicios   servicios[]
 }
 
 model categorias {
-  idCategoria Int           @id @default(autoincrement())
-  idAdmin     Int
-  nombre      String        @db.VarChar(100)
-  descripcion String        @db.VarChar(200)
-  creado      DateTime      @db.DateTime(0)
-  actualizado DateTime      @db.DateTime(0)
+  idCategoria   Int           @id @default(autoincrement())
+  idAdmin       Int
+  nombre        String        @db.VarChar(100)
+  descripcion   String        @db.VarChar(200)
+  creado        DateTime      @db.DateTime(0)
+  actualizado   DateTime      @db.DateTime(0)
   administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: "fk_Categorias_Administradores1")
-  productos   productos[]
+  productos     productos[]
 
   @@index([idAdmin], map: "fk_Categorias_Administradores1_idx")
 }
 
 model clientes {
-  idCliente   Int           @id @default(autoincrement())
-  idAdmin     Int
-  nombre      String        @db.VarChar(100)
-  apellido    String        @db.VarChar(100)
-  correo      String        @db.VarChar(100)
-  contrase_a  String        @map("contraseña") @db.VarChar(50)
-  telefono    String        @db.VarChar(30)
-  direccion   String        @db.VarChar(50)
-  ciudad      String        @db.VarChar(45)
-  mensaje     String        @db.VarChar(200)
-  fecha       DateTime      @db.Date
+  idCliente     Int           @id @default(autoincrement())
+  idAdmin       Int
+  nombre        String        @db.VarChar(100)
+  apellido      String        @db.VarChar(100)
+  correo        String        @db.VarChar(100)
+  contrase_a    String        @map("contraseña") @db.VarChar(50)
+  telefono      String        @db.VarChar(30)
+  direccion     String        @db.VarChar(50)
+  ciudad        String        @db.VarChar(45)
+  mensaje       String        @db.VarChar(200)
+  fecha         DateTime      @db.Date
   administrador administrador @relation(fields: [idAdmin], references: [idAdmin], onDelete: NoAction, onUpdate: NoAction, map: "fk_Contactos_Administradores1")
 
   @@index([idAdmin], map: "fk_Contactos_Administradores1_idx")
@@ -84,5 +84,5 @@ model servicios {
 
 enum administrador_rol {
   admin
-  editor
+  Clientes
 }
