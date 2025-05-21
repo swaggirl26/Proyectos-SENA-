@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import logo from '../src/assets/img/LOGO VECTOR COLOR.png'
+import logonav from '../src/assets/img/logonav.png';
 export default function Navegacion() {
   return (
     <nav className="bg-black text-white flex items-center justify-between px-6 py-3">
       {/* Logo */}
       <div className="flex items-center">
-        <img src={logo} alt="Logo" className="h-30 w-auto" />
+        <img src={logonav} alt="logo" className="h-40 w-auto" />
       </div>
 
       {/* Menú */}
