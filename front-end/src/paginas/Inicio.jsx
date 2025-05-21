@@ -1,6 +1,7 @@
 import Fondoportada from '../assets/img/Fondoportada.png';
 import whatsappIcono from '/Iconos/whatsapp_icono.ico';
 
+
 function Inicio() {
   return (
     <>
@@ -63,7 +64,7 @@ function Inicio() {
              <div className="bg-white shadow-xl relative">
              <img
               src="/imagenes/cortinas.jpg"
-              alt="Asesoría"
+              alt="Productos"
               className="w-full h-full object-cover"
              />
              <div className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center text-white text-center px-4">
@@ -76,10 +77,10 @@ function Inicio() {
             </div>
 
             {/* Tarjeta 3 */}
-             <div className="bg-white shadow-xl relative">
+            <div className="bg-white shadow-xl relative">
              <img
               src="/imagenes/asesoria.jpg"
-              alt="Asesoría"
+              alt="Servicios"
               className="w-full h-full object-cover"
              />
              <div className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center text-white text-center px-4">
