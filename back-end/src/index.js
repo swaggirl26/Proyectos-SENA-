@@ -8,6 +8,10 @@ import serviciosRoutes from './routes/servicesRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import pagoRoutes from './routes/pagoRoutes.js';
 
+
+
+
+
 import dotenv from 'dotenv'
 
 dotenv.config();
@@ -27,6 +31,9 @@ app.use('/api/contacto', contactoRoutes);
 app.use('/api/servicios', serviciosRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/pagos', pagoRoutes);
+
+//mercadopago
+app.use('/api/mercadopago', pagoRoutes);
 
 
 

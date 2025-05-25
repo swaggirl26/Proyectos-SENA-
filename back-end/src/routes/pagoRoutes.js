@@ -3,12 +3,13 @@ import express from 'express';
 import { crearPreference, webhook } from '../controllers/pagoController.js';
 import { verificarToken } from '../controllers/authController.js';
 
+
 const router = express.Router();
 
-// Checkout: protegido con JWT
+// Checkout protegido (requiere JWT)
 router.post('/checkout', verificarToken, crearPreference);
 
-// Webhook: público, recibe notificaciones de MP
+// Webhook público
 router.post('/webhook', express.json(), webhook);
 
 export default router;
