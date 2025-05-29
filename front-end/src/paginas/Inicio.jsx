@@ -128,14 +128,19 @@ function Inicio() {
         </div>
 
         {/* Imagen + estrellas */}
-        <div className="w-full md:w-1/4 flex flex-col items-center">
-          <img src={testimonio} alt="Cliente con cortina" className="rounded-md shadow-md w-full object-cover" />
-          <div className="flex mt-3 bg-[#E5BC57] p-2 rounded-full">
-            {[...Array(5)].map((_, i) => (
-              <span key={i} className="text-1xl">★</span>
-            ))}
-          </div>
-        </div>
+<div className="w-full md:w-1/4 flex flex-col items-center">
+  <img 
+    src={testimonio} 
+    alt="Cliente con cortina" 
+    className="rounded-md shadow-md w-full object-cover" 
+  />
+  <div className="flex mt-3 bg-[#E5BC57] p-2 rounded-full">
+    {[...Array(5)].map((_, i) => (
+      <span key={i} className="text-white text-1xl">★</span>
+    ))}
+  </div>
+</div>
+
       </section>
     </>
   );

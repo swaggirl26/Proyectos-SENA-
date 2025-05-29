@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import logonav from '../src/assets/img/logonav.png';
 export default function Navegacion() {
   return (
-    <nav className="bg-black text-white flex items-center justify-between px-6 py-3">
+    <nav className="bg-black text-white flex items-center justify-between px-6 py-1">
       {/* Logo */}
       <div className="flex items-center">
-        <img src={logonav} alt="logo" className="h-40 w-auto" />
+        <img src={logonav} alt="logo" className="h-30 w-auto" />
       </div>
 
       {/* Menú */}
