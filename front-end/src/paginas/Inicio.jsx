@@ -1,7 +1,7 @@
 import Fondoportada from '../assets/img/Fondoportada.png';
 import whatsappIcono from '/Iconos/whatsapp_icono.ico';
 import Carrusel from '../componentes/Carrusel';
-import Logo from '../assets/img/Logo.png';
+import Logo from '../assets/img/Logonav.png';
 import testimonio from '../assets/img/testimonio.png';
 
 
@@ -103,9 +103,8 @@ function Inicio() {
         </div>
       </section>
          {/* Carrusel de productos */}
-      <section className="py-12 bg-[#e5e2df]">
+      <section className="py-5 bg-[#e5e2df]">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold text-center mb-8">Nuestros Productos Destacados</h2>
           <Carrusel />
         </div>
       </section>
@@ -113,17 +112,17 @@ function Inicio() {
       <section className="bg-[#d8c1a7] py-12 px-6 md:px-20 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Logo + texto */}
         <div className="flex flex-col items-center md:items-start w-full md:w-1/4">
-          <img src={Logo} alt="Logo" className="w-70 md:w-36 mb-2" />
+          <img src={Logo} alt="Logo" className="w-100 md:w-100 mb-2" />
          </div>
 
         {/* Testimonio texto */}
         <div className="text-center md:text-left w-full md:w-2/4">
-          <h3 className="text-lg font-semibold mb-4">Lo que opinan nuestros clientes</h3>
-          <p className="text-xl font-serif mb-4">
+          <h3 className="text-xl font-semibold mb-4">Lo que opinan nuestros clientes</h3>
+          <p className="text-lg font-serif mb-4">
             “Estoy encantado con mi nueva cortina. La calidad de la tela, el diseño y los acabados. ¡Definitivamente los recomiendo!”
           </p>
           <p className="mb-4 text-sm text-gray-800">¿Necesitas ayuda?</p>
-          <button className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-semibold py-2 px-6 rounded-full shadow-md hover:brightness-110 transition">
+          <button className="bg-[#E5BC57] text-black font-semibold py-2 px-6 rounded-full shadow-md hover:brightness-110 transition">
             Contáctanos
           </button>
         </div>

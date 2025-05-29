@@ -1,3 +1,5 @@
+import correoicono from "../assets/img/correoicono.ico";
+
 function Contactanos() {
     return (
       <div className="min-h-screen bg-[#e5e2df] flex items-center justify-center p-8">
@@ -12,14 +14,10 @@ function Contactanos() {
   
           {/* Formulario */}
           <div className="md:w-1/2 bg-white rounded-xl shadow-lg p-6">
-            <h2 className="text-3xl font-bold mb-4 leading-relaxed">Déjanos tu solicitud!</h2>
-            {/* Icono superior derecho */}
-            <div className="flex justify-end mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12l-4-4-4 4m8 4l-4-4-4 4" />
-              </svg>
-            </div>
-  
+          <div className="flex items-center gap-2 mb-4">
+            <h2 className="text-3xl font-bold leading-relaxed">Déjanos tu solicitud!</h2>
+            <img src={correoicono} alt="Correo" className="w-20 h-20" />
+          </div>
             <form className="space-y-4">
               <div className="flex gap-4">
                 <input type="text" placeholder="Nombre" className="w-1/2 p-2  rounded-md focus:outline-none focus:ring bg-[#e5e2df]" />
