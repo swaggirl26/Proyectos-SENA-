@@ -1,10 +1,7 @@
 // src/utils/mercadoPago.js
-import { MercadoPagoConfig } from 'mercadopago';
-import dotenv from 'dotenv';
-dotenv.config();
+import mercadopago from 'mercadopago';
 
-const mercadopago = new MercadoPagoConfig({
-  accessToken: process.env.MP_ACCESS_TOKEN,
-});
+// Configura el cliente de Mercado Pago
+mercadopago.accessToken = process.env.MP_ACCESS_TOKEN;
 
-export default mercadopago;
+export const preferencesService = mercadopago.preferences;

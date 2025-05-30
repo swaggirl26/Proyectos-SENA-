@@ -1,39 +1,36 @@
-// src/controllers/pagoController.js
-import mercadopago from '../utils/mercadoPago.js';
+import { preferencesService } from '../utils/mercadoPago.js';
 
 export const crearPreference = async (req, res) => {
   try {
-    const preference = await mercadopago.preference.create({
-      body: {
-        items: [
-          {
-            title: 'Panel Japonés',
-            quantity: 1,
-            unit_price: 344500.30,
-            currency_id: 'COP'
-          }
-        ],
-        back_urls: {
-          success: 'http://localhost:5173/success',
-          failure: 'http://localhost:5173/failure',
-          pending: 'http://localhost:5173/pending',
-        },
-        auto_return: 'approved',
-      }
-    });
+    const { title, quantity, price } = req.body;
 
-    res.status(200).json({
-      id: preference.id,
-      init_point: preference.init_point,
-    });
+    const preference = {
+      items: [
+        {
+          title,
+          quantity,
+          currency_id: "COP", // Moneda: Pesos Colombianos
+          unit_price: Number(price),
+        },
+      ],
+      back_urls: {
+        success: "http://localhost:4000/success",
+        failure: "http://localhost:4000/failure",
+        pending: "http://localhost:4000/pending",
+      },
+      auto_return: "approved",
+    };
+
+    const response = await preferencesService.create(preference);
+    res.status(201).json({ init_point: response.body.init_point });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'No se pudo crear la preferencia' });
+    console.error('Error creando preferencia:', error);
+    res.status(500).json({ error: error.message });
   }
 };
-// src/controllers/pagoController.js
 
 export const webhook = (req, res) => {
-  console.log('Webhook MP payload:', req.body);
+  console.log('Webhook recibido:', req.body);
+  // Aquí podrías actualizar el estado de la orden en tu base de datos
   res.sendStatus(200);
 };
