@@ -1,7 +1,7 @@
 import Fondoportada from '../assets/img/Fondoportada.png';
 import whatsappIcono from '/Iconos/whatsapp_icono.ico';
 import Carrusel from '../componentes/Carrusel';
-import Logo from '../assets/img/Logonav.png';
+import Logo from '../assets/img/logonav.png';
 import testimonio from '../assets/img/testimonio.png';
 
 
