@@ -7,7 +7,7 @@ import Contactanos from "./paginas/Contactanos";
 import Login from "./paginas/Login";
 import Register from "./paginas/Register";
 import Navegacion from "./Navegacion";
-import Footer from "./componentes/footer";
+import Footer from "./componentes/Footer";
 
 function App() {
   return (
