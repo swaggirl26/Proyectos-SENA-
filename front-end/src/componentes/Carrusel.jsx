@@ -4,37 +4,37 @@ import React, { useEffect, useState } from 'react';
 // Importar imágenes desde src/img
 const images = [
   {
-    src: '/img/ondaserena.jpeg',
+    src: '/src/assets/img/ondaserena.jpeg',
     alt: 'Cortinas Onda Serena',
     fallbackSrc: '/img/placeholder-cortina.jpeg'
   },
   {
-    src: '/img/sheerelegance.jpeg',
+    src: '/src/assets/img/sheerelegance.jpeg',
     alt: 'Cortinas Sheer Elegance',
     fallbackSrc: '/img/placeholder-cortina.jpeg'
   },
   {
-    src: '/img/blackout.jpeg',
+    src: '/src/assets/img/blackout.jpeg',
     alt: 'Cortinas Blackout',
     fallbackSrc: '/img/placeholder-cortina.jpeg'
   },
   {
-    src: '/img/cortinasmotorizadas.jpeg',
+    src: '/src/assets/img/cortinasmotorizadas.jpeg',
     alt: 'Cortinas Motorizadas',
     fallbackSrc: '/img/placeholder-cortina.jpeg'
   },
   {
-    src: '/img/toldos.jpeg',
+    src: '/src/assets/img/toldos.jpeg',
     alt: 'Toldos',
     fallbackSrc: '/img/placeholder-cortina.jpeg'
   },
   {
-    src: '/img/panesjapones.jpeg',
+    src: '/src/assets/img/paneljapones.jpeg',
     alt: 'Paneles Japoneses',
     fallbackSrc: '/img/placeholder-cortina.jpeg'
   },
   {
-    src: '/img/cortinascomprenses.jpeg',
+    src: '/src/assets/img/cortinasconprenses.jpeg',
     alt: 'Cortinas Comprenses',
     fallbackSrc: '/img/placeholder-cortina.jpeg'
   }
