@@ -63,7 +63,7 @@ function Register() {
       <input type="text" placeholder="Ciudad de residencia" value={formData.ciudad} onChange={handleChange} className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]" /><br />
       
       
-      <button onClick={handleSubmit} className=" text-black font-semibold m-2 py-2 px-4 rounded-md shadow w-full bg-[#E5BC57]">Registrarse</button>
+      <button onClick={handleSubmit} className=" text-black font-semibold m-2 py-2 px-2 rounded-md shadow w-32 bg-[#E5BC57]">Registrarse</button>
       <p>
         ¿Ya tienes una cuenta? <a href="/Login" className="text-blue-600 underline">Iniciar sesión</a>
       </p>

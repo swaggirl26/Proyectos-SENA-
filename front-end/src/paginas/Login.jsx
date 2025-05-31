@@ -43,7 +43,7 @@ function Login() {
 
           {/* Error */}
           {error && <p className="text-red-500 text-sm">{error}</p>}
-          <button type="submit" className=" text-black font-semibold py-2 px-4 rounded-md shadow w-full bg-[#E5BC57]" >Ingresar</button>
+          <button type="submit" className=" text-black font-semibold py-2 px-4 rounded-md shadow w-32 bg-[#E5BC57]" >Ingresar</button>
           <p className="text-sm">
             ¿No tienes una cuenta? <a href="/Register" className="text-blue-600 underline">Regístrate ahora</a>
           </p>
