@@ -1,4 +1,4 @@
-// src/components/Login.jsx
+// src/paginas/Login.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -90,21 +90,20 @@ function Login() {
       // localStorage.setItem('token', data.token);
       // localStorage.setItem('user', JSON.stringify(data.cliente));
 
-      // Mostrar modal de éxito sin botón de continuar, se cierra tras 3 segundos
+      // Mostrar modal de éxito sin botón de continuar (se cierra en 3s)
       await Swal.fire({
         icon: "success",
         title: "¡Inicio de sesión exitoso!",
         text: "Bienvenido de nuevo.",
         showConfirmButton: false,
-        timer: 2000,
+        timer: 3000,
         timerProgressBar: true,
       });
 
-      // Después de que el modal se cierre automáticamente, redirigir
       navigate("/dashboard");
     } catch (err) {
       console.error("Error en fetch:", err.message);
-      // Mostrar modal de error con botón de aceptar
+      // Mostrar modal de error con botón “Aceptar”
       await Swal.fire({
         icon: "error",
         title: "Error",

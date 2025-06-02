@@ -10,6 +10,7 @@ datasource db {
 }
 
 model administrador {
+<<<<<<< HEAD
   idAdmin     Int                @id @default(autoincrement())
   usuario     String             @unique(map: "username_UNIQUE") @db.VarChar(45)
   contrase_a  String             @map("contraseña") @db.VarChar(50)
@@ -17,6 +18,15 @@ model administrador {
   rol         administrador_rol? @default(Clientes)
   creado      DateTime           @db.DateTime(0)
   actualizado DateTime           @db.DateTime(0)
+=======
+  idAdmin     Int               @id @default(autoincrement())
+  usuario     String            @unique(map: "username_UNIQUE") @db.VarChar(45)
+  contrase_a  String            @map("contraseña") @db.VarChar(255)
+  correo      String            @db.VarChar(50)
+  rol         administrador_rol @default(editor)
+  creado      DateTime          @db.DateTime(0)
+  actualizado DateTime          @db.DateTime(0)
+>>>>>>> 33ea840d48096684819d3140618b28cb43ce0ebb
   categorias  categorias[]
   clientes    clientes[]
   productos   productos[]
@@ -42,7 +52,11 @@ model clientes {
   nombre        String        @db.VarChar(100)
   apellido      String        @db.VarChar(100)
   correo        String        @db.VarChar(100)
+<<<<<<< HEAD
   contrase_a    String?       @map("contraseña") @db.VarChar(255)
+=======
+  contrase_a    String        @map("contraseña") @db.VarChar(255)
+>>>>>>> 33ea840d48096684819d3140618b28cb43ce0ebb
   telefono      String        @db.VarChar(30)
   direccion     String        @db.VarChar(50)
   ciudad        String        @db.VarChar(45)

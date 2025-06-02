@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 const JWT_SECRET = process.env.JWT_SECRET || 'tu_clave_secreta';
 const JWT_EXPIRES_IN = '4h';
 
-// Variables de entorno de Mercado Pago
+// Variables de entorno de Mercado Pago (se mantienen aunque no son relevantes para este error)
 const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN || 'tu_token_de_acceso';
 const MP_PUBLIC_KEY = process.env.MP_PUBLIC_KEY || 'tu_clave_publica';
 
@@ -31,11 +31,11 @@ export const register = async (req, res) => {
     // Crear el usuario
     const nuevoCliente = await prisma.clientes.create({
       data: {
-        idAdmin: 1, // Asignar a un admin por defecto
+        idAdmin: 1, // Asignar a un admin por defecto (asegúrate de que este idAdmin exista)
         nombre,
         apellido,
         correo,
-        contrase_a: contrasenaHash,
+        contrase_a: contrasenaHash, // Asegúrate de que este campo coincida con tu schema.prisma
         telefono,
         direccion,
         ciudad,
@@ -70,19 +70,51 @@ export const login = async (req, res) => {
   try {
     const { correo, contrasena } = req.body;
     
-    // Buscar el usuario
+    // --- INICIO DEPURACIÓN PARA EL ERROR DE BCrypt ---
+    console.log('--- Intento de Login ---');
+    console.log('Correo recibido (req.body.correo):', correo);
+    console.log('Contraseña recibida (req.body.contrasena):', contrasena ? '***** (presente)' : 'AUSENTE/VACÍA'); // No loguear la contraseña en texto plano
+    // --- FIN INICIO DEPURACIÓN ---
+
+    // Buscar el usuario en la base de datos
     const cliente = await prisma.clientes.findFirst({
       where: { correo }
     });
     
+    // --- INICIO DEPURACIÓN ---
+    console.log('Cliente encontrado en DB:', cliente ? 'Sí' : 'No');
+    if (cliente) {
+      console.log('ID Cliente encontrado:', cliente.idCliente);
+      console.log('Contraseña hasheada en DB (cliente.contrase_a):', cliente.contrase_a ? '***** (presente)' : 'AUSENTE/NULA');
+      if (!cliente.contrase_a) {
+        console.warn('ADVERTENCIA: La contraseña hasheada para este cliente en la DB es NULA o INDEFINIDA. Esto causará el error "data and hash arguments required".');
+      }
+    }
+    // --- FIN DEPURACIÓN ---
+
     if (!cliente) {
+      // Si el cliente no se encuentra, las credenciales son inválidas
       return res.status(400).json({ mensaje: 'Credenciales inválidas' });
     }
     
     // Verificar contraseña
-    const contrasenaValida = await bcrypt.compare(contrasena, cliente.contrase_a);
+    let contrasenaValida = false;
+    try {
+      // Aquí es donde ocurre el error "data and hash arguments required"
+      // Esto significa que 'contrasena' (primer argumento) o 'cliente.contrase_a' (segundo argumento) es undefined/null
+      contrasenaValida = await bcrypt.compare(contrasena, cliente.contrase_a);
+    } catch (bcryptError) {
+      console.error('Error específico al comparar contraseñas con bcrypt:', bcryptError.message);
+      // Si el error es el esperado de bcrypt por argumentos faltantes
+      if (bcryptError.message === 'data and hash arguments required') {
+        return res.status(500).json({ mensaje: 'Error interno: La contraseña del usuario en la base de datos es inválida o faltante. Por favor, contacta al soporte.' });
+      }
+      // Otros errores de bcrypt
+      return res.status(500).json({ mensaje: 'Error interno del servidor al verificar la contraseña.' });
+    }
     
     if (!contrasenaValida) {
+      // Si la contraseña no coincide
       return res.status(400).json({ mensaje: 'Credenciales inválidas' });
     }
     
@@ -103,7 +135,7 @@ export const login = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error('Error en inicio de sesión:', error);
+    console.error('Error en inicio de sesión (catch general):', error);
     res.status(500).json({ mensaje: 'Error en el servidor' });
   }
 };
