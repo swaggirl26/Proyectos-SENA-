@@ -2,9 +2,17 @@ import React, { useState } from 'react';
 import ProductCards from '../componentes/ProductCards';
 
 const products = [
-  { id: 1, name: 'Cortina Blackout', price: 45.00 },
-  { id: 2, name: 'Asesoría Decorativa', price: 70.00 },
-  { id: 3, name: 'Instalación Premium', price: 120.00 },
+  { id: 1, name: 'Cortina Blackout', price: 105.00 },
+  { id: 2, name: 'Cortina con prenses', price: 70.00 },
+  { id: 3, name: 'Cortina motorizadas', price: 120.00 },
+  { id: 4, name: 'Panel japones', price: 120.00 },
+  { id: 5, name: 'Sheer elegance', price: 120.00 },
+  { id: 6, name: 'Onda serena', price: 120.00 },
+  { id: 7, name: 'Persianas', price: 120.00 },
+  { id: 8, name: 'Macromaderas', price: 120.00 },
+  { id: 9, name: 'Toldos', price: 120.00 },
+  { id: 10, name: 'Verticales', price: 120.00 },
+  { id: 10, name: 'Enrollables en screen', price: 120.00 },
 ];
 
 export default function ProductSection() {
@@ -20,19 +28,25 @@ export default function ProductSection() {
   return (
     <div className="relative">
       {/* Botón del carrito */}
-      <div className="fixed top-6 right-6 z-50">
-        <button
-          onClick={() => setIsCartOpen(!isCartOpen)}
-          className="bg-white shadow-md px-4 py-2 rounded-full flex items-center gap-2 text-gray-800 hover:bg-gray-100"
-        >
-          🛒 {cart.length}
-        </button>
-      </div>
+{/* Botón abajo-derecha */}
+<div className="fixed bottom-6 right-6 z-40">
+  <button
+    onClick={() => setIsCartOpen(!isCartOpen)}
+    className="relative bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-lg px-4 py-3 rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform duration-200"
+  >
+    <span className="text-2xl">🛒</span>
+    {cart.length > 0 && (
+      <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">
+        {cart.length}
+      </span>
+    )}
+  </button>
+   </div>
 
       {/* Carrito flotante */}
       {isCartOpen && (
         <div className="fixed top-20 right-6 w-80 bg-white p-6 rounded-xl shadow-2xl z-40">
-          <h3 className="text-lg font-bold mb-3 text-gray-800">Carrito de Compras 🛍️</h3>
+          <h3 className="text-lg font-bold mb-3 text-gray-800">Carrito de Compras </h3>
           <ul className="list-disc list-inside text-gray-700 max-h-60 overflow-y-auto">
             {cart.map((item, idx) => (
               <li key={idx}>
@@ -46,6 +60,12 @@ export default function ProductSection() {
             className="mt-4 w-full bg-red-500 text-white py-2 rounded-xl hover:bg-red-600"
           >
             Vaciar carrito 🗑️
+          </button>
+          <button
+            onClick={() => setCart([])}
+            className="mt-4 w-full bg-red-500 text-white py-2 rounded-xl hover:bg-red-600"
+          >
+            Editar producto 🗑️
           </button>
         </div>
       )}

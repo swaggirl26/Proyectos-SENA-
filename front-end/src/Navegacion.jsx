@@ -22,13 +22,11 @@ export default function Navegacion() {
 
       {/* Botones derechos */}
       <div className="flex items-center gap-3">
-        {/* Carrito */}
-       
-         
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5H19" />
+      
+           <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.5H19" />
             <circle cx="9" cy="21" r="1" />
             <circle cx="20" cy="21" r="1" />
-        
+          {/* Carrito */}
        
 
 
