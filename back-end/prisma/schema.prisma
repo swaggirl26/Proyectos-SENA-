@@ -12,7 +12,7 @@ datasource db {
 model administrador {
   idAdmin     Int               @id @default(autoincrement())
   usuario     String            @unique(map: "username_UNIQUE") @db.VarChar(45)
-  contrase_a  String            @map("contraseña") @db.VarChar(50)
+  contrase_a  String            @map("contraseña") @db.VarChar(255)
   correo      String            @db.VarChar(50)
   rol         administrador_rol @default(editor)
   creado      DateTime          @db.DateTime(0)
@@ -42,7 +42,7 @@ model clientes {
   nombre        String        @db.VarChar(100)
   apellido      String        @db.VarChar(100)
   correo        String        @db.VarChar(100)
-  contrase_a    String        @map("contraseña") @db.VarChar(50)
+  contrase_a    String        @map("contraseña") @db.VarChar(255)
   telefono      String        @db.VarChar(30)
   direccion     String        @db.VarChar(50)
   ciudad        String        @db.VarChar(45)
