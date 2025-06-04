@@ -17,7 +17,8 @@ export default function ProductSection() {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   return (
-    <section className="p-8 bg-gray-100 min-h-screen">
+    <section className="p-8 bg-[#e5e2df] min-h-screen">
+
       <h2 className="text-3xl font-bold mb-6 text-gray-800">Nuestros Productos</h2>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

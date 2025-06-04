@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import logonav from '../src/assets/img/logonav.png';
 export default function Navegacion() {
   return (
-    <nav className="bg-black text-white flex items-center justify-between px-6 py-1">
+    <nav className="bg-black text-white flex absolute top-0 z-10 w-full items-center justify-between px-6 py-1">
       {/* Logo */}
       <div className="flex items-center">
         <img src={logonav} alt="logo" className="h-30 w-auto" />

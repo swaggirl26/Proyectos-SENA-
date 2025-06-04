@@ -40,7 +40,7 @@ function Inicio() {
           </a>
         </div>
       </section>
-
+    
    
 
       {/* Sección de tarjetas */}

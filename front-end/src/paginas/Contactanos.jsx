@@ -2,7 +2,7 @@ import correoicono from "../assets/img/correoicono.ico";
 
 function Contactanos() {
     return (
-      <div className="min-h-screen bg-[#e5e2df] flex items-center justify-center p-8">
+      <div className="min-h-screen bg-[#e5e2df] mt-20 flex items-center justify-center p-8">
         <div className="flex flex-col md:flex-row gap-8 max-w-5xl w-full">
           {/* Lado izquierdo */}
           <div className="md:w-1/2 text-center md:text-left">
