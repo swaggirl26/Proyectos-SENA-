@@ -39,10 +39,14 @@ function Register() {
 
       case "correo":
         if (valor.trim() === "") {
-          nuevosErrores.correo = "El correo no puede estar vacío.";
+          nuevosErrores.correo = "Por favor ingresa un correo electrónico.";
+        } else if (!valor.includes("@")) {
+          nuevosErrores.correo = 'El correo debe contener "@".';
+        } else if (!valor.includes(".")) {
+          nuevosErrores.correo = "El correo debe contener un punto (ej: .com).";
         } else if (!validarEmail(valor.trim())) {
           nuevosErrores.correo =
-            "Correo inválido. Ejemplo válido: ejemplo@correo.com";
+            "Ingresa un correo válido (ej: ejemplo@correo.com).";
         } else {
           delete nuevosErrores.correo;
         }
@@ -55,7 +59,7 @@ function Register() {
         } else if (!/\d/.test(valor)) {
           nuevosErrores.contrasena =
             "La contraseña debe contener al menos un número.";
-        } else if (!/[!@#$%^&*(),.?\":{}|<>]/.test(valor)) {
+        } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(valor)) {
           nuevosErrores.contrasena =
             "La contraseña debe contener al menos un carácter especial (ejemplo: !@#$%^&*).";
         } else if (!/[A-Z]/.test(valor)) {
@@ -64,7 +68,7 @@ function Register() {
         } else {
           delete nuevosErrores.contrasena;
         }
-        // Si ya existe confirmarContrasena, también validar aquí
+        // Validar confirmarContrasena si ya fue ingresada
         if (
           formData.confirmarContrasena &&
           valor !== formData.confirmarContrasena
@@ -184,16 +188,14 @@ function Register() {
       const data = await response.json();
 
       if (!response.ok) {
-        // Si el backend devuelve status 400/500
         setErrorMsg(data.mensaje || data.error || "Error en el registro");
         setLoading(false);
         return;
       }
 
-      // Si todo salió bien, guardamos token (opcional)
+      // Guardar token (opcional)
       localStorage.setItem("token", data.token);
 
-      // Mostrar toast sin botón, se cierra a los 2 segundos
       await Swal.fire({
         icon: "success",
         title: "¡Registro exitoso!",
@@ -203,7 +205,6 @@ function Register() {
         timerProgressBar: true,
       });
 
-      // Después de que el modal se cierre automáticamente, redirigir
       navigate("/login");
     } catch (error) {
       console.error("Error en fetch:", error);
@@ -240,7 +241,11 @@ function Register() {
               placeholder="Nombre"
               value={formData.nombre}
               onChange={handleChange}
-              className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
+              className={`w-full m-1 p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                errores.nombre
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
               disabled={loading}
             />
             {errores.nombre && (
@@ -256,7 +261,11 @@ function Register() {
               placeholder="Apellido"
               value={formData.apellido}
               onChange={handleChange}
-              className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
+              className={`w-full m-1 p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                errores.apellido
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
               disabled={loading}
             />
             {errores.apellido && (
@@ -272,7 +281,11 @@ function Register() {
               placeholder="Correo Electrónico"
               value={formData.correo}
               onChange={handleChange}
-              className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
+              className={`w-full m-1 p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                errores.correo
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
               disabled={loading}
             />
             {errores.correo && (
@@ -288,7 +301,11 @@ function Register() {
               placeholder="Contraseña"
               value={formData.contrasena}
               onChange={handleChange}
-              className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
+              className={`w-full m-1 p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                errores.contrasena
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
               disabled={loading}
             />
             {errores.contrasena && (
@@ -304,7 +321,11 @@ function Register() {
               placeholder="Confirmar Contraseña"
               value={formData.confirmarContrasena}
               onChange={handleChange}
-              className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
+              className={`w-full m-1 p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                errores.confirmarContrasena
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
               disabled={loading}
             />
             {errores.confirmarContrasena && (
@@ -322,7 +343,11 @@ function Register() {
               placeholder="Número de teléfono"
               value={formData.telefono}
               onChange={handleChange}
-              className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
+              className={`w-full m-1 p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                errores.telefono
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
               disabled={loading}
             />
             {errores.telefono && (
@@ -338,7 +363,11 @@ function Register() {
               placeholder="Dirección"
               value={formData.direccion}
               onChange={handleChange}
-              className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
+              className={`w-full m-1 p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                errores.direccion
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
               disabled={loading}
             />
             {errores.direccion && (
@@ -354,7 +383,11 @@ function Register() {
               placeholder="Ciudad de residencia"
               value={formData.ciudad}
               onChange={handleChange}
-              className="w-full m-1 p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
+              className={`w-full m-1 p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                errores.ciudad
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
               disabled={loading}
             />
             {errores.ciudad && (

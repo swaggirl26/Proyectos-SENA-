@@ -6,7 +6,9 @@ import Swal from "sweetalert2";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [serverError, setServerError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -16,58 +18,66 @@ function Login() {
     return regex.test(email);
   };
 
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    if (value.trim() === "") {
+      setEmailError("Por favor ingresa un correo electrónico");
+    } else if (!value.includes("@")) {
+      setEmailError('El correo debe contener "@"');
+    } else if (!value.includes(".")) {
+      setEmailError("El correo debe contener un punto (ej: .com)");
+    } else if (!validarEmail(value)) {
+      setEmailError("Ingresa un correo válido");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const value = e.target.value;
+    setPassword(value);
+
+    if (value.trim() === "") {
+      setPasswordError("Por favor ingresa tu contraseña");
+    } else if (value.length < 8) {
+      setPasswordError("La contraseña debe tener al menos 8 caracteres");
+    } else if (!/\d/.test(value)) {
+      setPasswordError("La contraseña debe contener al menos un número");
+    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+      setPasswordError(
+        "La contraseña debe contener al menos un carácter especial (ej: !@#$%^&*)"
+      );
+    } else if (!/[A-Z]/.test(value)) {
+      setPasswordError(
+        "La contraseña debe contener al menos una letra mayúscula (ej: A)"
+      );
+    } else {
+      setPasswordError("");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validaciones de correo
+    // Validar campos vacíos o con error antes de enviar
     if (email.trim() === "") {
-      setError(
-        "Por favor ingresa un correo electrónico (ejemplo: example@correo.com)"
-      );
-      return;
+      setEmailError("Por favor ingresa un correo electrónico");
     }
-    if (!email.includes("@")) {
-      setError('El correo debe contener "@" (ejemplo: example@correo.com)');
-      return;
-    }
-    if (!email.includes(".")) {
-      setError(
-        "El correo debe contener un punto (ejemplo: example@correo.com)"
-      );
-      return;
-    }
-    if (!validarEmail(email)) {
-      setError("Ingresa un correo válido (ejemplo: example@correo.com)");
-      return;
-    }
-
-    // Validaciones de contraseña
     if (password.trim() === "") {
-      setError("Por favor ingresa tu contraseña");
-      return;
+      setPasswordError("Por favor ingresa tu contraseña");
     }
-    if (password.length < 8) {
-      setError("La contraseña debe tener al menos 8 caracteres");
-      return;
-    }
-    if (!/\d/.test(password)) {
-      setError("La contraseña debe contener al menos un número");
-      return;
-    }
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      setError(
-        "La contraseña debe contener al menos un carácter especial (ejemplo: !@#$%^&*)"
-      );
-      return;
-    }
-    if (!/[A-Z]/.test(password)) {
-      setError(
-        "La contraseña debe contener al menos una letra mayúscula (ejemplo: A)"
-      );
+    if (
+      emailError ||
+      passwordError ||
+      email.trim() === "" ||
+      password.trim() === ""
+    ) {
       return;
     }
 
-    setError("");
+    setServerError("");
     setLoading(true);
 
     try {
@@ -81,29 +91,26 @@ function Login() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Error en el inicio de sesión");
+        throw new Error(errorData.mensaje || "Error en el inicio de sesión");
       }
 
       const data = await response.json();
 
-      // Aquí podrías guardar el token JWT si tu backend lo envía
-      // localStorage.setItem('token', data.token);
-      // localStorage.setItem('user', JSON.stringify(data.cliente));
-
-      // Mostrar modal de éxito sin botón de continuar (se cierra en 3s)
       await Swal.fire({
         icon: "success",
         title: "¡Inicio de sesión exitoso!",
         text: "Bienvenido de nuevo.",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 2000,
         timerProgressBar: true,
       });
 
       navigate("/dashboard");
     } catch (err) {
       console.error("Error en fetch:", err.message);
-      // Mostrar modal de error con botón “Aceptar”
+      setServerError(
+        err.message || "Ocurrió un error inesperado al intentar iniciar sesión."
+      );
       await Swal.fire({
         icon: "error",
         title: "Error",
@@ -112,9 +119,6 @@ function Login() {
           "Ocurrió un error inesperado al intentar iniciar sesión.",
         confirmButtonText: "Aceptar",
       });
-      setError(
-        err.message || "Ocurrió un error inesperado al intentar iniciar sesión."
-      );
     } finally {
       setLoading(false);
     }
@@ -135,25 +139,44 @@ function Login() {
 
         {/* Formulario */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="email"
-            placeholder="Correo Electrónico"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
-            disabled={loading}
-          />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 rounded-md focus:outline-none focus:border-yellow-400 bg-[#e5e2df]"
-            disabled={loading}
-          />
+          {/* Input de correo */}
+          <div>
+            <input
+              type="email"
+              placeholder="Correo Electrónico"
+              value={email}
+              onChange={handleEmailChange}
+              className={`w-full p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                emailError ? "border border-red-500" : "focus:border-yellow-400"
+              }`}
+              disabled={loading}
+            />
+            {emailError && (
+              <p className="text-red-500 text-sm mt-1">{emailError}</p>
+            )}
+          </div>
 
-          {/* Error */}
-          {error && <p className="text-red-500 text-sm">{error}</p>}
+          {/* Input de contraseña */}
+          <div>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={handlePasswordChange}
+              className={`w-full p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                passwordError
+                  ? "border border-red-500"
+                  : "focus:border-yellow-400"
+              }`}
+              disabled={loading}
+            />
+            {passwordError && (
+              <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+            )}
+          </div>
+
+          {/* Error del servidor */}
+          {serverError && <p className="text-red-500 text-sm">{serverError}</p>}
 
           <button
             type="submit"
