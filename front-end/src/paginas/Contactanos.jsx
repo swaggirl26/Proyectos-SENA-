@@ -4,21 +4,6 @@ import Swal from "sweetalert2";
 import correoicono from "../assets/img/correoicono.ico";
 
 function Contactanos() {
-<<<<<<< HEAD
-    return (
-      <div className="min-h-screen bg-[#e5e2df] mt-20 flex items-center justify-center p-8">
-        <div className="flex flex-col md:flex-row gap-8 max-w-5xl w-full">
-          {/* Lado izquierdo */}
-          <div className="md:w-1/2 text-center md:text-left">
-            <h2 className="text-4xl font-bold mb-4">¡Contáctanos!</h2>
-            <p className="text-lg leading-relaxed">
-              Déjanos un mensaje o llámanos para darte la mejor opción de decoración de tu hogar.
-            </p>
-          </div>
-  
-          {/* Formulario */}
-          <div className="md:w-1/2 bg-white rounded-xl shadow-lg p-6">
-=======
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -116,7 +101,6 @@ function Contactanos() {
 
         {/* Formulario */}
         <div className="md:w-1/2 bg-white rounded-xl shadow-lg p-6">
->>>>>>> d1faa42fec6322020309246708cc16eaaf8a7fc3
           <div className="flex items-center gap-2 mb-4">
             <h2 className="text-3xl font-bold leading-relaxed text-right">
               ¡Déjanos tu solicitud!
