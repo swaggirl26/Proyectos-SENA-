@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import ProductCards from '../componentes/ProductCards';
 
 const products = [
-  { id: 1, name: 'Cortina Blackout', price: 105.00 },
-  { id: 2, name: 'Cortina con prenses', price: 70.00 },
-  { id: 3, name: 'Cortina motorizadas', price: 120.00 },
-  { id: 4, name: 'Panel japones', price: 120.00 },
-  { id: 5, name: 'Sheer elegance', price: 120.00 },
-  { id: 6, name: 'Onda serena', price: 120.00 },
-  { id: 7, name: 'Persianas', price: 120.00 },
-  { id: 8, name: 'Macromaderas', price: 120.00 },
-  { id: 9, name: 'Toldos', price: 120.00 },
-  { id: 10, name: 'Verticales', price: 120.00 },
-  { id: 10, name: 'Enrollables en screen', price: 120.00 },
+  { id: 1, name: 'Cortina Blackout',imagen_url: "https://res.cloudinary.com/dcx3jprqf/image/upload/v1748022828/productos/blackouts.jpg", price: 105.00 },
+  { id: 2, name: 'Cortina con prenses',imagen_url:"https://res.cloudinary.com/dcx3jprqf/image/upload/v1748052136/productos/WhatsApp_Image_2025-04-15_at_12.jpg", price: 70.00 },
+,
+  { id: 4, name: 'Panel japones', imagen_url:"https://res.cloudinary.com/dcx3jprqf/image/upload/v1748028790/productos/panel-japones.jpg", price: 120.00 },
+  { id: 5, name: 'Sheer elegance', imagen_url:"https://res.cloudinary.com/dcx3jprqf/image/upload/v1748019406/productos/WhatsApp_Image_2025-04-02_at_11.jpg", price: 120.00 },
+  { id: 6, name: 'Onda serena',imagen_url: "https://res.cloudinary.com/dcx3jprqf/image/upload/v1745674644/productos/onda_serena.png", price: 120.00 },
+  { id: 7, name: 'Persianas', imagen_url: "https://res.cloudinary.com/dcx3jprqf/image/upload/v1748023120/productos/persianas.jpg", price: 120.00 },
+  { id: 8, name: 'Macromaderas', imagen_url:"https://res.cloudinary.com/dcx3jprqf/image/upload/v1748052236/productos/imagen12.jpg", price: 120.00 },
+  { id: 9, name: 'Toldos', imagen_url:"https://res.cloudinary.com/dcx3jprqf/image/upload/v1748042406/productos/TOLDO_VERTICAL_BALCON.jpg", price: 120.00 },
+  { id: 10, name: 'Verticales',imagen_url:"https://res.cloudinary.com/dcx3jprqf/image/upload/v1748051871/productos/71kCjo5SpsL.jpg", price: 120.00 },
+  { id: 10, name: 'Enrollables en screen',imagen_url:"https://res.cloudinary.com/dcx3jprqf/image/upload/v1748021817/productos/Enrollable.jpg", price: 120.00 },
 ];
 
 export default function ProductSection() {
@@ -29,9 +29,9 @@ export default function ProductSection() {
     <div className="relative">
       {/* Botón del carrito */}
 {/* Botón abajo-derecha */}
-<div className="fixed  right-6 z-40 absolute bottom-155 right-65">
+<div className="fixed  right-6 z-40 position absolute bottom-160 right-65">
   <button
-    onClick={() => setIsCartOpen(!isCartOpen)}
+    onClick={() =>  setIsCartOpen(!isCartOpen)}
     className="relative bg-gradient-to-r from-yellow-400 to-yellow-500 shadow-lg px-4 py-3 rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform duration-200"
   >
     <span className="text-2xl"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

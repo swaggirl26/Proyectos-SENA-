@@ -1,7 +1,7 @@
 
 export default function Carrito ({ product, onAddToCart }) {
   return (
-    <div className="bg-white shadow-lg rounded-2xl p-5 flex flex-col justify-between">
+    <div className="bg-white shadow-lg rounded-2xl z-30 p-5 flex flex-col justify-between">
       <h3 className="text-xl font-bold text-gray-800">{product.name}</h3>
       <p className="text-gray-600 mt-2">${product.price.toFixed(2)}</p>
       <button

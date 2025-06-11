@@ -8,6 +8,7 @@ function Contactanos() {
     nombre: "",
     apellido: "",
     correo: "",
+    asunto: "", // Nuevo campo
     mensaje: "",
   });
   const [errores, setErrores] = useState({});
@@ -40,6 +41,11 @@ function Contactanos() {
           error = "Ingresa un correo válido.";
         }
         break;
+      case "asunto":
+        if (!value.trim()) {
+          error = "Selecciona un asunto.";
+        }
+        break;
       case "mensaje":
         if (!value.trim()) {
           error = "El mensaje no puede estar vacío.";
@@ -63,7 +69,7 @@ function Contactanos() {
     Object.entries(formData).forEach(([key, val]) => {
       validarCampo(key, val);
     });
-    // Si hay errores, no enviar
+
     if (
       Object.values(errores).some((err) => err) ||
       Object.values(formData).some((v) => !v.trim())
@@ -82,13 +88,19 @@ function Contactanos() {
         timer: 2000,
         timerProgressBar: true,
       });
-      setFormData({ nombre: "", apellido: "", correo: "", mensaje: "" });
+      setFormData({
+        nombre: "",
+        apellido: "",
+        correo: "",
+        asunto: "",
+        mensaje: "",
+      });
       setErrores({});
     }, 1000);
   };
 
   return (
-    <div className="min-h-screen bg-[#e5e2df] flex items-center justify-center p-8">
+    <div className="min-h-screen bg-[#e5e2df] my-20 flex items-center justify-center p-8">
       <div className="flex flex-col md:flex-row gap-8 max-w-5xl w-full">
         {/* Lado izquierdo */}
         <div className="md:w-1/2 text-center md:text-left">
@@ -144,6 +156,7 @@ function Contactanos() {
                 )}
               </div>
             </div>
+
             <div>
               <input
                 type="email"
@@ -160,6 +173,33 @@ function Contactanos() {
                 <p className="text-red-500 text-sm mt-1">{errores.correo}</p>
               )}
             </div>
+
+            <div>
+              <select
+                name="asunto"
+                value={formData.asunto}
+                onChange={handleChange}
+                className={`w-full p-2 rounded-md focus:outline-none bg-[#e5e2df] ${
+                  errores.asunto ? "border border-red-500" : "focus:ring"
+                }`}
+                disabled={loading}
+              >
+                <option value="">Selecciona un asunto</option>
+                <option value="Consulta de producto">
+                  Consulta de producto
+                </option>
+                <option value="Cotización">Cotización</option>
+                <option value="Problema con el pedido">
+                  Problema con el pedido
+                </option>
+                <option value="Instalación">Instalación</option>
+                <option value="Otro">Otro</option>
+              </select>
+              {errores.asunto && (
+                <p className="text-red-500 text-sm mt-1">{errores.asunto}</p>
+              )}
+            </div>
+
             <div>
               <textarea
                 name="mensaje"
@@ -176,6 +216,7 @@ function Contactanos() {
                 <p className="text-red-500 text-sm mt-1">{errores.mensaje}</p>
               )}
             </div>
+
             <button
               type="submit"
               className="text-black font-semibold py-2 px-4 rounded-md shadow bg-[#E5BC57]"

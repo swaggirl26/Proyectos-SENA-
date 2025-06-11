@@ -1,29 +1,39 @@
 import React from 'react';
-
-export default function ProductCard({ product, onAddToCart }) {
+import { useNavigate } from 'react-router-dom';
+export default function ProductCard ({ product, onAddToCart }) {
+  const navigate = useNavigate();
+  const handlecomprar = () => {
+    navigate('/ProductosInfo');
+  }
   return (
-    <div className="bg-white mx-10 my-10 shadow-lg rounded-2xl p-5 flex flex-col justify-between hover:shadow-xl transition">
+    <div
+      className="bg-white mx-10 my-10 shadow-lg rounded-2xl p-5 flex flex-col justify-between 
+      hover:shadow-xl hover:scale-105 active:scale-95 transition-transform duration-300 ease-in-out cursor-pointer"
+    >
       <img
-        src={product.image}
+        src={product.imagen_url}
         alt={product.name}
-        className="bg-[#e5e2df] w-full h-40 object-cover rounded-xl mb-4"
+        className="bg-[#e5e2df] w-full h-70 object-cover rounded-xl mb-4 transition duration-300 ease-in-out"
       />
       <h3 className="text-xl text-center font-bold text-gray-800">{product.name}</h3>
       <p className="text-gray-600 text-center mt-2">${product.price.toFixed(2)}</p>
 
-      <div className=" flex mt-10 mb-5 ">
+      <div className="flex mt-10 mb-2 justify-center gap-4">
         <button
           onClick={() => onAddToCart(product)}
-          className="w-fit mx-10  px-4 py-2 bg-[#E5BC57] text-black font-semibold rounded-xl  brightness-110 transition"
+          className="px-4 py-3 bg-[#E5BC57] text-black font-semibold rounded-xl transition 
+          hover:brightness-110 hover:scale-105 active:scale-95"
         >
           Añadir al carrito 
         </button>
         <button
-          onClick={() => alert(`Gracias por comprar ${product.name}`)}
-          className="w-fit  px-4 py-2  bg-[#E5BC57] text-black font-semibold  rounded-xl brightness-110 transition"
+          onClick = {handlecomprar}
+          className="px-4 py-3 bg-[#E5BC57] text-black font-semibold rounded-xl transition 
+          hover:brightness-110 hover:scale-105 active:scale-95"
         >
           Comprar 
         </button>
+       
       </div>
     </div>
   );

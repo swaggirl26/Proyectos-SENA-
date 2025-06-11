@@ -72,7 +72,7 @@ const Carrusel = () => {
   };
 
   return (
-    <div className="relative w-full md:w-4/5 max-w-4xl mx-auto h-64 md:h-80 overflow-hidden rounded-xl shadow-2xl bg-gray-100">
+    <div className="relative w-full z-5 md:w-4/5 max-w-4xl mx-auto h-65 md:h-80 overflow-hidden rounded-xl shadow-2xl bg-gray-100">
       {/* Carrusel */}
       <div 
         className="flex h-full transition-transform duration-500 ease-in-out"
