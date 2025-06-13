@@ -31,7 +31,7 @@ export default function ProductCard ({ product, onAddToCart }) {
           className="px-4 py-3 bg-[#E5BC57] text-black font-semibold rounded-xl transition 
           hover:brightness-110 hover:scale-105 active:scale-95"
         >
-          Comprar 
+          Ver detalle
         </button>
        
       </div>
