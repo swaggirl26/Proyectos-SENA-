@@ -1,10 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+
 export default function ProductCard ({ product, onAddToCart }) {
-  const navigate = useNavigate();
-  const handlecomprar = () => {
-    navigate('/ProductosInfo');
-  }
+ 
   return (
     <div
       className="bg-white mx-10 my-10 shadow-lg rounded-2xl p-5 flex flex-col justify-between 
@@ -27,12 +24,13 @@ export default function ProductCard ({ product, onAddToCart }) {
           Añadir al carrito 
         </button>
         <button
-          onClick = {handlecomprar}
           className="px-4 py-3 bg-[#E5BC57] text-black font-semibold rounded-xl transition 
           hover:brightness-110 hover:scale-105 active:scale-95"
         >
           Ver detalle
         </button>
+          
+       
        
       </div>
     </div>
