@@ -1,5 +1,5 @@
-// App.jsx (CORREGIDO)
-import { Routes, Route } from "react-router-dom"; // Ya NO importamos BrowserRouter aquí
+import React, { useState } from 'react';
+import { Routes, Route } from "react-router-dom";
 import Inicio from "./paginas/Inicio";
 import Productos from "./paginas/Productos";
 import Servicios from "./paginas/Servicios";
@@ -11,23 +11,31 @@ import Navegacion from "./Navegacion";
 import Footer from "./componentes/Footer";
 import ProductosInfo from "./componentes/ProductosInfo";
 
-function App() {
-  return (
-    <> {/* Usa un fragmento de React o un div si necesitas un contenedor */}
-      <Navegacion />
 
+function App() {  
+  const [cart, setCart] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  return (
+    <>
+      <Navegacion
+        cart={cart}
+        setCart={setCart}
+        isCartOpen={isCartOpen}
+        setIsCartOpen={setIsCartOpen}
+      />
+      
       <Routes>
-        <Route path="/" element={<Inicio />}></Route>
-        <Route path="/Productos" element={<Productos />}></Route>
-        <Route path="/Servicios" element={<Servicios />}></Route>
-        <Route path="/SobreNosotros" element={<SobreNosotros />}></Route>
-        <Route path="/Contactanos" element={<Contactanos />}></Route>
-        <Route path="/Login" element={<Login />}></Route>
-        <Route path="/Register" element={<Register />}></Route>
-        <Route path="/ProductosInfo" element={<ProductosInfo/>}></Route>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/Productos" element={<Productos onAddToCart={(product) => setCart(prev => [...prev, product])} />} />
+        <Route path="/Servicios" element={<Servicios />} />
+        <Route path="/SobreNosotros" element={<SobreNosotros />} />
+        <Route path="/Contactanos" element={<Contactanos />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/ProductosInfo" element={<ProductosInfo />} />
       </Routes>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }

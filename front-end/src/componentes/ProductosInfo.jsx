@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShoppingCart, Package, CreditCard, MapPin } from 'lucide-react';
 
 export default function CheckoutForm() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     calle: '',
     numero1: '',
@@ -35,6 +38,16 @@ export default function CheckoutForm() {
     }));
   };
 
+  const handleContinue = () => {
+    const { calle, numero1, numero2, telefono } = formData;
+    if (!calle || !numero1 || !numero2 || !telefono) {
+      alert("Por favor completa todos los campos requeridos.");
+      return;
+    }
+
+    navigate('/pago');
+  };
+
   const steps = [
     { id: 1, name: 'Carro', icon: ShoppingCart, active: false },
     { id: 2, name: 'Entrega', icon: Package, active: true },
@@ -52,7 +65,7 @@ export default function CheckoutForm() {
         <div className="flex items-center justify-center mb-8">
           {steps.map((step, index) => (
             <div key={step.id} className="flex items-center">
-              <div className={`flex flex-col items-center ${step.active ? 'text-bg-[#E5BC57]' : 'text-gray-400'}`}>
+              <div className={`flex flex-col items-center ${step.active ? 'text-[#E5BC57]' : 'text-gray-400'}`}>
                 <div className={`flex items-center justify-center w-12 h-12 rounded-full border-2 mb-2 ${
                   step.active 
                     ? 'bg-[#E5BC57] text-white' 
@@ -73,7 +86,7 @@ export default function CheckoutForm() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Formulario */}
-          <div className="bg-white rounded-lg shadow-lg p-6  hover:shadow-xl hover:scale-105 active:scale-95 transition-transform duration-300 ease-in-out cursor-pointer">
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl hover:scale-105 active:scale-95 transition-transform duration-300 ease-in-out cursor-pointer">
             <div className="flex items-center mb-6">
               <MapPin className="w-5 h-5 text-orange-500 mr-2" />
               <h2 className="text-xl font-semibold text-gray-800">
@@ -139,8 +152,7 @@ export default function CheckoutForm() {
                 <label className="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
                 <div className="flex">
                   <div className="flex items-center px-3 py-2 bg-gray-50 border border-r-0 border-gray-300 rounded-l-md">
-                    <div className="flex space-x-1">
-                    </div>
+                    <div className="flex space-x-1"></div>
                   </div>
                   <input
                     type="tel"
@@ -156,7 +168,7 @@ export default function CheckoutForm() {
           </div>
 
           {/* Resumen */}
-          <div className="bg-white rounded-lg shadow-lg p-6  hover:shadow-xl hover:scale-105 active:scale-95 transition-transform duration-300 ease-in-out cursor-pointer">
+          <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl hover:scale-105 active:scale-95 transition-transform duration-300 ease-in-out cursor-pointer">
             <h3 className="text-xl font-semibold text-gray-800 mb-6">Resumen de compra:</h3>
 
             {/* Producto */}
@@ -170,7 +182,7 @@ export default function CheckoutForm() {
                   <span className="text-sm text-gray-600">Color:</span>
                   <div className="w-3 h-3 bg-[#E5BC57] rounded-full"></div>
                 </div>
-                
+
                 {/* Dimensiones */}
                 <div className="grid grid-cols-2 gap-2 mb-3">
                   <input
@@ -226,8 +238,10 @@ export default function CheckoutForm() {
               </div>
             </div>
 
-            <button className="w-60 mx-30 mt-6 bg-[#E5BC57]  text-black font-medium py-3 rounded-lg transition 
-          hover:brightness-110 hover:scale-105 active:scale-95" >
+            <button
+              onClick={handleContinue}
+              className="w-60 mx-30 mt-6 bg-[#E5BC57] text-black font-medium py-3 rounded-lg transition hover:brightness-110 hover:scale-105 active:scale-95"
+            >
               Continuar al Pago
             </button>
           </div>
