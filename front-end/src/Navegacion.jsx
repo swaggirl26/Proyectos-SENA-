@@ -83,3 +83,4 @@ export default function Navegacion({ cart, setCart, isCartOpen, setIsCartOpen })
     </nav>
   );
 }
+
